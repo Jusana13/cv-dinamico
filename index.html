@@ -1,50 +1,61 @@
 <!-- Creador de CV Dinámico - Diseñado y desarrollado por jusana -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Creador Dinámico de Currículums | Genera tu CV A4 en Tiempo Real</title>
-  <meta name="description" content="Diseña, personaliza e imprime tu currículum profesional con ajuste perfecto a A4. Elige entre múltiples plantillas, ajusta colores y descarga tu PDF al instante.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'><rect x='4' y='8' width='18' height='20' rx='4' fill='%23c9a227' opacity='0.4'/><rect x='10' y='4' width='18' height='20' rx='4' fill='%23ffffff' stroke='%230c0d0f' stroke-width='1.5'/><path d='M14 10H24M14 14H24M14 18H20' stroke='%230c0d0f' stroke-width='2' stroke-linecap='round'/></svg>">
+  <meta name="description"
+    content="Diseña, personaliza e imprime tu currículum profesional con ajuste perfecto a A4. Elige entre múltiples plantillas, ajusta colores y descarga tu PDF al instante.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none'><rect x='4' y='8' width='18' height='20' rx='4' fill='%23c9a227' opacity='0.4'/><rect x='10' y='4' width='18' height='20' rx='4' fill='%23ffffff' stroke='%230c0d0f' stroke-width='1.5'/><path d='M14 10H24M14 14H24M14 18H20' stroke='%230c0d0f' stroke-width='2' stroke-linecap='round'/></svg>">
   <link rel="stylesheet" href="./src/css/styles.css">
 </head>
+
 <body>
 
   <div id="app-container">
-    
+
     <!-- Barra Superior -->
     <header class="top-bar">
       <div class="brand">
         <div class="logo-icon">
           <svg class="logo-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="8" width="18" height="20" rx="4" fill="url(#logo-grad-1)" opacity="0.4"/>
-            <rect x="10" y="4" width="18" height="20" rx="4" fill="url(#logo-grad-2)" stroke="#0c0d0f" stroke-width="1.5"/>
-            <path d="M14 10H24M14 14H24M14 18H20" stroke="#0c0d0f" stroke-width="2" stroke-linecap="round"/>
+            <rect x="4" y="8" width="18" height="20" rx="4" fill="url(#logo-grad-1)" opacity="0.4" />
+            <rect x="10" y="4" width="18" height="20" rx="4" fill="url(#logo-grad-2)" stroke="#0c0d0f"
+              stroke-width="1.5" />
+            <path d="M14 10H24M14 14H24M14 18H20" stroke="#0c0d0f" stroke-width="2" stroke-linecap="round" />
             <defs>
               <linearGradient id="logo-grad-1" x1="4" y1="8" x2="22" y2="28" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#c9a227"/>
-                <stop offset="1" stop-color="#ebd078"/>
+                <stop stop-color="#c9a227" />
+                <stop offset="1" stop-color="#ebd078" />
               </linearGradient>
               <linearGradient id="logo-grad-2" x1="10" y1="4" x2="28" y2="24" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#ffffff"/>
-                <stop offset="1" stop-color="#ebd078"/>
+                <stop stop-color="#ffffff" />
+                <stop offset="1" stop-color="#ebd078" />
               </linearGradient>
             </defs>
           </svg>
         </div>
-        <h1>Creador de CV Dinámico</h1>
+        <h1>FlowCV - Creador de CV Dinámico</h1>
       </div>
 
       <div class="controls-top">
         <!-- Selector de Plantilla Visual -->
         <div class="template-selector-container">
           <button id="btn-template-select-trigger" class="btn" title="Selecciona una plantilla de currículum">
-            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.17 19.64 10.53 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-3.5-8c.83 0 1.5-.67 1.5-1.5S9.33 7 8.5 7 7 7.67 7 8.5s.67 1.5 1.5 1.5zm7 0c.83 0 1.5-.67 1.5-1.5S16.33 7 15.5 7 14 7.67 14 8.5s.67 1.5 1.5 1.5zm-3.5 5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" fill="currentColor"/></svg>
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path
+                d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.17 19.64 10.53 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm-3.5-8c.83 0 1.5-.67 1.5-1.5S9.33 7 8.5 7 7 7.67 7 8.5s.67 1.5 1.5 1.5zm7 0c.83 0 1.5-.67 1.5-1.5S16.33 7 15.5 7 14 7.67 14 8.5s.67 1.5 1.5 1.5zm-3.5 5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"
+                fill="currentColor" />
+            </svg>
             <span id="current-template-text">Plantilla: Moderno</span>
-            <svg class="dropdown-chevron-svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" fill="currentColor"/></svg>
+            <svg class="dropdown-chevron-svg" viewBox="0 0 24 24">
+              <path d="M7 10l5 5 5-5z" fill="currentColor" />
+            </svg>
           </button>
-          
+
           <div id="template-dropdown-menu" class="template-dropdown-menu">
             <div class="template-option active" data-value="moderno">
               <div class="template-mini-preview moderno">
@@ -64,7 +75,7 @@
               </div>
               <span class="template-name">Moderno</span>
             </div>
-            
+
             <div class="template-option" data-value="profesional">
               <div class="template-mini-preview profesional">
                 <div class="mini-stripe"></div>
@@ -86,7 +97,7 @@
               </div>
               <span class="template-name">Profesional</span>
             </div>
-            
+
             <div class="template-option" data-value="minimalista">
               <div class="template-mini-preview minimalista">
                 <div class="mini-header">
@@ -108,19 +119,30 @@
 
         <!-- Acciones de Datos -->
         <button id="btn-reset" class="btn" title="Restablecer los datos a los valores genéricos por defecto">
-          <svg class="btn-icon" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+          </svg>
           <span>Limpiar Datos</span>
         </button>
         <button id="btn-import-json" class="btn" title="Cargar datos de CV desde un archivo JSON">
-          <svg class="btn-icon" viewBox="0 0 24 24"><path d="M21 16v3c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1s1 .45 1 1v2h14v-2c0-.55.45-1 1-1s1 .45 1 1zm-9-2.17l2.88-2.87c.39-.39 1.02-.39 1.41 0a.996.996 0 0 1 0 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L5.7 12.37a.996.996 0 1 1 1.41-1.41L10 13.83V4c0-.55.45-1 1-1s1 .45 1 1v9.83z"/></svg>
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M21 16v3c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1s1 .45 1 1v2h14v-2c0-.55.45-1 1-1s1 .45 1 1zm-9-2.17l2.88-2.87c.39-.39 1.02-.39 1.41 0a.996.996 0 0 1 0 1.41l-4.59 4.59a.996.996 0 0 1-1.41 0L5.7 12.37a.996.996 0 1 1 1.41-1.41L10 13.83V4c0-.55.45-1 1-1s1 .45 1 1v9.83z" />
+          </svg>
           <span>Importar Datos</span>
         </button>
         <button id="btn-export-json" class="btn" title="Guardar y descargar los datos actuales como JSON">
-          <svg class="btn-icon" viewBox="0 0 24 24"><path d="M21 16v3c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1s1 .45 1 1v2h14v-2c0-.55.45-1 1-1s1 .45 1 1zm-9-5.83l2.88 2.87c.39.39 1.02.39 1.41 0a.996.996 0 0 0 0-1.41l-4.59-4.59a.996.996 0 0 0-1.41 0L5.7 11.63a.996.996 0 0 0 1.41 1.41L10 10.17V20c0 .55.45 1 1 1s1-.45 1-1V10.17z"/></svg>
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M21 16v3c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1s1 .45 1 1v2h14v-2c0-.55.45-1 1-1s1 .45 1 1zm-9-5.83l2.88 2.87c.39.39 1.02.39 1.41 0a.996.996 0 0 0 0-1.41l-4.59-4.59a.996.996 0 0 0-1.41 0L5.7 11.63a.996.996 0 0 0 1.41 1.41L10 10.17V20c0 .55.45 1 1 1s1-.45 1-1V10.17z" />
+          </svg>
           <span>Guardar Progreso</span>
         </button>
         <button id="btn-print-pdf" class="btn btn-primary" title="Imprimir o guardar como PDF en tamaño A4">
-          <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path
+              d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+          </svg>
           <span>Imprimir / Guardar PDF</span>
         </button>
       </div>
@@ -128,10 +150,10 @@
 
     <!-- Workspace: Editor + Vista Previa -->
     <div class="workspace">
-      
+
       <!-- Panel Izquierdo: Formularios -->
       <aside class="editor-panel">
-        
+
         <!-- Pestañas de Navegación -->
         <nav class="editor-tabs">
           <button class="tab-btn active" data-target="sec-personal">Personal</button>
@@ -146,7 +168,7 @@
 
         <!-- Formularios -->
         <div class="editor-content">
-          
+
           <!-- SECCIÓN: Datos Personales -->
           <section id="sec-personal" class="form-section active">
             <fieldset class="form-fieldset">
@@ -167,37 +189,54 @@
                 <label>Foto de Perfil</label>
                 <div class="photo-layout-row">
                   <div class="avatar-uploader-wrapper">
-                    <div class="avatar-preview shape-circle" id="avatar-preview-box" title="Haz clic para subir o cambiar foto de perfil">
-                      <svg class="placeholder-svg" viewBox="0 0 24 24"><path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#94a3b8"/></svg>
+                    <div class="avatar-preview shape-circle" id="avatar-preview-box"
+                      title="Haz clic para subir o cambiar foto de perfil">
+                      <svg class="placeholder-svg" viewBox="0 0 24 24">
+                        <path
+                          d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                          fill="#94a3b8" />
+                      </svg>
                       <img id="avatar-preview-img" src="" alt="" style="display: none;">
                       <div class="avatar-overlay">
-                        <svg viewBox="0 0 24 24" class="overlay-icon"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" fill="currentColor"/></svg>
+                        <svg viewBox="0 0 24 24" class="overlay-icon">
+                          <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" fill="currentColor" />
+                        </svg>
                       </div>
                     </div>
                     <input type="file" id="photo-upload-input" accept="image/*" style="display: none;">
                   </div>
                   <div class="avatar-shape-toggles-side">
                     <button type="button" class="shape-toggle-btn active" data-shape="circle" title="Circular">
-                      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                      <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none" />
+                      </svg>
                     </button>
                     <button type="button" class="shape-toggle-btn" data-shape="rounded" title="Bordes Redondeados">
-                      <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                      <svg viewBox="0 0 24 24">
+                        <rect x="5" y="5" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2"
+                          fill="none" />
+                      </svg>
                     </button>
                     <button type="button" class="shape-toggle-btn" data-shape="square" title="Cuadrada">
-                      <svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="0" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                      <svg viewBox="0 0 24 24">
+                        <rect x="5" y="5" width="14" height="14" rx="0" stroke="currentColor" stroke-width="2"
+                          fill="none" />
+                      </svg>
                     </button>
                   </div>
                 </div>
               </div>
             </fieldset>
-            
+
             <fieldset class="form-fieldset" style="margin-top: 15px;">
               <legend>Perfil Profesional</legend>
               <div id="profile-paragraphs-container" class="list-items-container">
                 <!-- Renderizado dinámico de párrafos de perfil -->
               </div>
               <button type="button" class="btn-add" data-action="add-profile">
-                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
                 <span>Añadir Párrafo de Perfil</span>
               </button>
             </fieldset>
@@ -210,13 +249,20 @@
               <div class="form-group">
                 <label>Dirección / Ubicación</label>
                 <div class="address-container-rel">
-                  <input type="text" id="address-input" data-bind="contact.0.text" placeholder="Ej. Son Oliva, Illes Balears" autocomplete="off">
+                  <input type="text" id="address-input" data-bind="contact.0.text"
+                    placeholder="Ej. Son Oliva, Illes Balears" autocomplete="off">
                   <div class="address-actions">
                     <button type="button" id="btn-geolocation" class="address-btn" title="Usar mi ubicación actual">
-                      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                      </svg>
                     </button>
                     <button type="button" id="btn-search-address" class="address-btn" title="Buscar dirección">
-                      <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                      <svg viewBox="0 0 24 24">
+                        <path
+                          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                      </svg>
                     </button>
                   </div>
                   <ul id="address-suggestions" class="address-suggestions-list" style="display: none;"></ul>
@@ -261,12 +307,15 @@
           <!-- SECCIÓN: Formación Académica -->
           <section id="sec-education" class="form-section">
             <fieldset class="form-fieldset">
-              <legend contenteditable="true" data-section-title="education" title="Haz clic para renombrar esta sección">Formación Académica</legend>
+              <legend contenteditable="true" data-section-title="education"
+                title="Haz clic para renombrar esta sección">Formación Académica</legend>
               <div id="education-list-container" class="list-items-container">
                 <!-- Renderizado dinámico de estudios -->
               </div>
               <button type="button" class="btn-add" data-action="add-education">
-                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
                 <span>Añadir Formación</span>
               </button>
             </fieldset>
@@ -275,12 +324,15 @@
           <!-- SECCIÓN: Experiencia Laboral -->
           <section id="sec-experience" class="form-section">
             <fieldset class="form-fieldset">
-              <legend contenteditable="true" data-section-title="experience" title="Haz clic para renombrar esta sección">Experiencia Laboral</legend>
+              <legend contenteditable="true" data-section-title="experience"
+                title="Haz clic para renombrar esta sección">Experiencia Laboral</legend>
               <div id="experience-list-container" class="list-items-container">
                 <!-- Renderizado dinámico de experiencias -->
               </div>
               <button type="button" class="btn-add" data-action="add-experience">
-                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
                 <span>Añadir Trabajo</span>
               </button>
             </fieldset>
@@ -289,12 +341,15 @@
           <!-- SECCIÓN: Habilidades Técnicas -->
           <section id="sec-skills" class="form-section">
             <fieldset class="form-fieldset">
-              <legend contenteditable="true" data-section-title="skills" title="Haz clic para renombrar esta sección">Habilidades Técnicas</legend>
+              <legend contenteditable="true" data-section-title="skills" title="Haz clic para renombrar esta sección">
+                Habilidades Técnicas</legend>
               <div id="skills-list-container" class="list-items-container">
                 <!-- Renderizado dinámico de habilidades -->
               </div>
               <button type="button" class="btn-add" data-action="add-skill">
-                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
                 <span>Añadir Habilidad</span>
               </button>
             </fieldset>
@@ -303,12 +358,15 @@
           <!-- SECCIÓN: Idiomas -->
           <section id="sec-languages" class="form-section">
             <fieldset class="form-fieldset">
-              <legend contenteditable="true" data-section-title="languages" title="Haz clic para renombrar esta sección">Idiomas</legend>
+              <legend contenteditable="true" data-section-title="languages"
+                title="Haz clic para renombrar esta sección">Idiomas</legend>
               <div id="languages-list-container" class="list-items-container">
                 <!-- Renderizado dinámico de idiomas -->
               </div>
               <button type="button" class="btn-add" data-action="add-language">
-                <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
                 <span>Añadir Idioma</span>
               </button>
             </fieldset>
@@ -317,7 +375,8 @@
           <!-- SECCIÓN: Intereses -->
           <section id="sec-interests" class="form-section">
             <fieldset class="form-fieldset">
-              <legend contenteditable="true" data-section-title="interests" title="Haz clic para renombrar esta sección">Intereses y Hobbies</legend>
+              <legend contenteditable="true" data-section-title="interests"
+                title="Haz clic para renombrar esta sección">Intereses y Hobbies</legend>
               <div id="interests-grid-container" class="interests-grid-editor">
                 <!-- Renderizado dinámico de checkboxes con iconos -->
               </div>
@@ -348,7 +407,8 @@
 
         <!-- Pie de página del editor con créditos de autoría -->
         <footer class="editor-footer">
-          <span>Creado por <a href="https://github.com/Jusana13" target="_blank" rel="noopener noreferrer" class="author-highlight">jusana</a></span>
+          <span>Creado por <a href="https://github.com/Jusana13" target="_blank" rel="noopener noreferrer"
+              class="author-highlight">jusana</a></span>
         </footer>
       </aside>
 
@@ -365,15 +425,20 @@
 
         <!-- Barra de Control de Zoom Flotante -->
         <div class="zoom-controls-floating">
-          <button id="btn-zoom-fit" class="btn-zoom-action active" title="Ajustar automáticamente a la pantalla">Auto-Ajustar</button>
+          <button id="btn-zoom-fit" class="btn-zoom-action active"
+            title="Ajustar automáticamente a la pantalla">Auto-Ajustar</button>
           <span class="zoom-divider">|</span>
           <button id="btn-zoom-out" class="btn-zoom-btn" title="Reducir zoom">
-            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path d="M19 13H5v-2h14v2z" />
+            </svg>
           </button>
           <input type="range" id="zoom-range" min="30" max="150" value="100" step="5" title="Deslizador de zoom manual">
           <span id="zoom-val-label">100%</span>
           <button id="btn-zoom-in" class="btn-zoom-btn" title="Aumentar zoom">
-            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+            </svg>
           </button>
         </div>
       </div>
@@ -387,21 +452,28 @@
       <div class="modal-header">
         <h4>Importar Progreso del CV</h4>
         <button type="button" class="modal-close" title="Cerrar modal">
-          <svg class="close-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg class="close-icon" viewBox="0 0 24 24">
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
         </button>
       </div>
       <div class="modal-body">
         <p><strong>Opción 1:</strong> Selecciona un archivo de respaldo (.json) desde tu equipo:</p>
         <div class="file-import-row">
           <button type="button" id="btn-trigger-file-import" class="btn">
-            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H7v-2h7v2zm3-4H7V10h10v2z"/></svg>
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path
+                d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 10H7v-2h7v2zm3-4H7V10h10v2z" />
+            </svg>
             <span>Seleccionar Archivo .json</span>
           </button>
           <span id="selected-file-name">Ningún archivo seleccionado</span>
           <input type="file" id="import-json-file" accept=".json">
         </div>
-        
-        <p style="border-top: 1px dashed var(--db-border); padding-top: 12px; margin-top: 5px;"><strong>Opción 2:</strong> Pega directamente el texto JSON exportado:</p>
+
+        <p style="border-top: 1px dashed var(--db-border); padding-top: 12px; margin-top: 5px;"><strong>Opción
+            2:</strong> Pega directamente el texto JSON exportado:</p>
         <textarea id="json-modal-text" placeholder='Pega el contenido JSON aquí...'></textarea>
       </div>
       <div class="modal-footer">
@@ -416,16 +488,24 @@
     <div class="modal-card modal-confirm-card">
       <div class="modal-header">
         <div class="modal-title-wrapper" style="display: flex; align-items: center; gap: 8px;">
-          <svg class="modal-title-icon" viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: var(--db-btn-danger);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          <svg class="modal-title-icon" viewBox="0 0 24 24"
+            style="width: 20px; height: 20px; fill: var(--db-btn-danger);">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+          </svg>
           <h4 style="margin: 0;">¿Confirmar Acción?</h4>
         </div>
         <button type="button" class="modal-close" title="Cerrar modal">
-          <svg class="close-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg class="close-icon" viewBox="0 0 24 24">
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+          </svg>
         </button>
       </div>
       <div class="modal-body">
         <p style="font-size: 13.5px; color: var(--db-text); line-height: 1.5; margin: 0;">
-          ¿Estás seguro de que deseas limpiar todos los datos del currículum y restablecer los valores genéricos por defecto?
+          ¿Estás seguro de que deseas limpiar todos los datos del currículum y restablecer los valores genéricos por
+          defecto?
         </p>
         <p style="font-size: 12px; color: var(--db-btn-danger); font-weight: 600; margin: 8px 0 0 0;">
           Esta acción no se puede deshacer y se perderá todo el progreso actual.
@@ -441,4 +521,5 @@
   <!-- Cargamos la lógica como Módulo ES6 -->
   <script type="module" src="./src/js/app.js"></script>
 </body>
+
 </html>
