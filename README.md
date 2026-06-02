@@ -4,7 +4,7 @@
 
 ---
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 El proyecto está construido bajo una filosofía de desarrollo web ágil y ligera, sin frameworks pesados en el cliente para maximizar la velocidad de carga y garantizar la compatibilidad a largo plazo:
 
@@ -16,7 +16,7 @@ El proyecto está construido bajo una filosofía de desarrollo web ágil y liger
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
+## Arquitectura del Proyecto
 
 El código está estructurado de manera que los componentes de la interfaz de usuario (UI del editor) y las plantillas de los currículums se mantengan completamente aislados:
 
@@ -43,7 +43,7 @@ C:\Proyectos\cv-dinamico/
 
 ---
 
-## 💎 Decisiones de Diseño: Escalabilidad y Modularidad
+## Decisiones de Diseño: Escalabilidad y Modularidad
 
 El núcleo del proyecto fue diseñado bajo estrictas pautas de ingeniería de software para prevenir el código espagueti y los parches ad-hoc:
 
@@ -69,7 +69,7 @@ Las secciones con layouts idénticos en una plantilla (ej. bloques de Experienci
 
 ---
 
-## 🚀 Cómo ejecutar el proyecto localmente
+## Cómo ejecutar el proyecto localmente
 
 ### Requisitos previos
 * Disponer de [Node.js](https://nodejs.org/) instalado en el sistema.
