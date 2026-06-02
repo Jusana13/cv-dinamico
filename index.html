@@ -439,7 +439,12 @@
         </div>
 
         <!-- Panel Derecho: Previsualizador A4 -->
-        <main id="preview-panel">
+        <main id="preview-panel" class="is-loading">
+          <!-- Loader de carga premium -->
+          <div id="cv-loader" class="cv-loader">
+            <div class="cv-loader-spinner"></div>
+            <span class="cv-loader-text">Preparando tu currículum...</span>
+          </div>
           <div class="cv-preview-wrapper">
             <div class="cv-preview-container">
               <!-- El contenido del CV se inyectará dinámicamente aquí -->

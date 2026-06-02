@@ -285,10 +285,10 @@ async function loadTemplate(templateId) {
     return templateCache[templateId];
   }
   try {
-    const modulePath = `../templates/${templateId}/index.js?t=${Date.now()}`;
+    const modulePath = `../templates/${templateId}/index.js`;
     const module = await import(modulePath);
 
-    const cssResponse = await fetch(`./src/templates/${templateId}/style.css?t=${Date.now()}`);
+    const cssResponse = await fetch(`./src/templates/${templateId}/style.css`);
     const cssText = await cssResponse.text();
 
     templateCache[templateId] = {
@@ -589,6 +589,25 @@ async function updatePreview() {
   const previewContainer = document.querySelector('.cv-preview-container');
   if (!previewContainer) return;
 
+  const previewPanel = document.getElementById('preview-panel');
+  const loader = document.getElementById('cv-loader');
+
+  // Solo mostramos el loader de carga si la plantilla NO está en la caché en memoria.
+  // Si ya está cacheada, la renderización es instantánea y no se requiere loader.
+  const isCached = !!templateCache[state.activeTemplate];
+
+  if (!isCached) {
+    if (previewPanel) {
+      previewPanel.classList.add('is-loading');
+    }
+    if (loader) {
+      loader.classList.remove('hidden');
+    }
+  }
+
+  // Escalar previamente para evitar saltos y dimensiones extrañas
+  scalePreview();
+
   const template = await loadTemplate(state.activeTemplate);
   if (template) {
     injectTemplateCSS(template.css);
@@ -716,6 +735,16 @@ async function updatePreview() {
   // Ajustar la escala por si cambió de plantilla o tamaño de contenedor
   scalePreview();
   checkPageOverflow();
+
+  // Ocultar el spinner de carga y quitar el estado cargando si lo habíamos mostrado
+  if (!isCached && previewPanel) {
+    setTimeout(() => {
+      previewPanel.classList.remove('is-loading');
+      if (loader) {
+        loader.classList.add('hidden');
+      }
+    }, 150);
+  }
 }
 
 /* ==========================================================================
