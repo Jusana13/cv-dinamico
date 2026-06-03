@@ -31,579 +31,567 @@
     padding-bottom: 40px;
     box-shadow: none;
     box-sizing: border-box;
-}
-
-/* --- Reset global --- */
-
-.cv-page.sage * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* ==========================================================================
-   ENCABEZADO Y CONTACTO
-   Banda superior con foto centrada y columnas de contacto a los lados
-   ========================================================================== */
-
-.cv-page.sage .header-spacing {
-    height: 40px;
-}
-
-.cv-page.sage .top-band {
-    background-color: var(--sage-bg);
-    border-top: 4px solid var(--sage-line);
-    border-bottom: 4px solid var(--sage-line);
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-}
-
-/* --- Foto de Perfil --- */
-
-.cv-page.sage .profile-pic {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    height: 150px;
-    background-color: var(--sage-bg);
-    border: 4px solid var(--sage-line);
-    z-index: 10;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-radius 0.2s ease;
-}
-
-.cv-page.sage .profile-pic.shape-circle {
-    border-radius: 50%;
-}
-
-.cv-page.sage .profile-pic.shape-rounded {
-    border-radius: 16px;
-}
-
-.cv-page.sage .profile-pic.shape-square {
-    border-radius: 4px;
-}
-
-.cv-page.sage .profile-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.cv-page.sage .profile-pic svg {
-    width: 70%;
-    height: 70%;
-}
-
-/* --- Columnas de Contacto (izquierda y derecha de la foto) --- */
-
-.cv-page.sage .contact-col {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-}
-
-.cv-page.sage .contact-col.left {
-    left: 0;
-    right: calc(50% + 75px);
-    align-items: flex-end;
-    padding-left: 20px;
-}
-
-.cv-page.sage .contact-col.right {
-    left: calc(50% + 75px);
-    right: 0;
-    align-items: flex-start;
-    padding-right: 20px;
-}
-
-.cv-page.sage .contact-item {
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-.cv-page.sage .contact-item.left {
-    justify-content: flex-end;
-}
-
-.cv-page.sage .contact-item.right {
-    justify-content: flex-start;
-}
-
-.cv-page.sage .contact-text {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--sage-ink);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.cv-page.sage .contact-text a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.cv-page.sage .contact-text a:hover {
-    text-decoration: underline;
-}
-
-.cv-page.sage .contact-item.left .contact-text {
-    margin-right: 12px;
-}
-
-.cv-page.sage .contact-item.right .contact-text {
-    margin-left: 12px;
-}
-
-/* --- Iconos circulares de contacto --- */
-
-.cv-page.sage .icon-circle {
-    width: 28px;
-    height: 28px;
-    background-color: var(--sage-line);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    z-index: 5;
-}
-
-.cv-page.sage .icon-circle svg {
-    width: 12px;
-    height: 12px;
-    fill: #ffffff;
-}
-
-.cv-page.sage .contact-line {
-    height: 2px;
-    background-color: var(--sage-line);
-    flex-shrink: 0;
-    width: 45px;
-}
-
-/* ==========================================================================
-   TÍTULO Y PERFIL PROFESIONAL
-   Nombre centrado con líneas flanqueantes, cargo y descripción
-   ========================================================================== */
-
-.cv-page.sage .intro-section {
-    padding: 30px 45px 20px;
-    text-align: center;
-}
-
-.cv-page.sage .name-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-    margin-left: -45px;
-    margin-right: -45px;
-}
-
-.cv-page.sage .name-line {
-    flex-grow: 1;
-    border-bottom: 2px solid var(--sage-line);
-}
-
-.cv-page.sage .name {
-    font-size: 30px;
-    letter-spacing: 6px;
-    margin: 0 10px;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.cv-page.sage .name-first {
-    font-weight: 700;
-    color: var(--sage-ink);
-}
-
-.cv-page.sage .name-last {
-    font-weight: 700;
-    color: var(--sage-bg);
-}
-
-.cv-page.sage .job-title {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    color: var(--sage-muted);
-    margin-bottom: 15px;
-}
-
-.cv-page.sage .profile-desc {
-    font-size: 11px;
-    line-height: 1.6;
-    color: var(--sage-muted);
-    text-align: justify;
-}
-
-/* ==========================================================================
-   DISEÑO DE 3 COLUMNAS
-   Grid de tres columnas para Formación, Expertise y Habilidades
-   ========================================================================== */
-
-.cv-page.sage .three-columns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    padding: 0 35px;
-    margin-bottom: 20px;
-}
-
-.cv-page.sage .col {
-    padding: 0 15px;
-}
-
-.cv-page.sage .col.bordered {
-    border-left: 1.5px solid var(--sage-accent-light);
-}
-
-/* --- Encabezados tipo "Píldora" (fila de 3) --- */
-
-.cv-page.sage .three-pills-container {
-    position: relative;
-    margin-bottom: 20px;
-    padding: 0 35px;
-}
-
-.cv-page.sage .three-pills-line {
-    position: absolute;
-    top: 50%;
-    left: calc(35px + (100% - 70px) / 6);
-    right: calc(35px + (100% - 70px) / 6);
-    height: 2px;
-    border-top: 2px solid var(--sage-line);
-    transform: translateY(-50%);
-    z-index: 1;
-}
-
-.cv-page.sage .three-pills-row {
-    display: flex;
-    position: relative;
-    z-index: 2;
-}
-
-.cv-page.sage .pill-col {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.cv-page.sage .pill-title {
-    background: var(--sage-pill-bg);
-    color: #fff;
-    border: 2px solid var(--sage-pill-border);
-    border-radius: 999px;
-    text-align: center;
-    padding: 8px 18px 7px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    z-index: 3;
-    white-space: nowrap;
-}
-
-/* --- Columna 1: Formación Académica --- */
-
-.cv-page.sage .ed-block {
-    text-align: center;
-    margin-bottom: 18px;
-}
-
-.cv-page.sage .ed-title {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--sage-ink);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-}
-
-.cv-page.sage .ed-detail {
-    font-size: 9.5px;
-    color: var(--sage-muted);
-    margin-bottom: 2px;
-    font-weight: 600;
-}
-
-.cv-page.sage .ed-detail.item-desc {
-    font-size: 9px;
-    margin-top: 4px;
-    text-align: center;
-    line-height: 1.4;
-}
-
-/* --- Columna 2: Expertise --- */
-
-.cv-page.sage .expertise-list {
-    list-style: none;
-    text-align: center;
-}
-
-.cv-page.sage .expertise-list li {
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--sage-ink);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-/* --- Columna 3: Habilidades con barra de progreso --- */
-
-.cv-page.sage .skill-block {
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.cv-page.sage .skill-name {
-    display: block;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--sage-ink);
-    margin-bottom: 4px;
-}
-
-.cv-page.sage .progress-bg {
-    background-color: var(--sage-progress-bg);
-    height: 6px;
-    border-radius: 10px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.cv-page.sage .progress-fill {
-    background-color: var(--sage-line);
-    height: 100%;
-    border-radius: 10px;
-}
-
-/* ==========================================================================
-   EXPERIENCIA LABORAL
-   Sección a ancho completo con encabezado píldora y tarjetas de experiencia
-   ========================================================================== */
-
-.cv-page.sage .experience-section {
-    padding: 0 35px;
-}
-
-.cv-page.sage .experience-section .pill-wrapper {
-    margin-left: -35px;
-    margin-right: -35px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.cv-page.sage .experience-section .pill-line {
-    flex-grow: 1;
-    border-top: 2px solid var(--sage-line);
-}
-
-.cv-page.sage .experience-section .pill-title {
-    background: var(--sage-pill-bg);
-    color: #fff;
-    border: 2px solid var(--sage-pill-border);
-    border-radius: 999px;
-    text-align: center;
-    padding: 8px 24px 7px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    z-index: 3;
-}
-
-/* --- Contenedor y tarjetas de experiencia --- */
-
-.cv-page.sage .exp-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.cv-page.sage .exp-item {
-    border: none;
-    background-color: transparent;
-    overflow: hidden;
-}
-
-.cv-page.sage .exp-header-row {
-    background-color: var(--sage-accent-light);
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 4px;
-}
-
-.cv-page.sage .exp-header-left {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.cv-page.sage .exp-company {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--sage-ink);
-    text-transform: uppercase;
-}
-
-.cv-page.sage .exp-separator {
-    color: var(--sage-muted);
-    font-weight: bold;
-    font-size: 10px;
-}
-
-.cv-page.sage .exp-location {
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    color: var(--sage-muted);
-    text-transform: uppercase;
-}
-
-.cv-page.sage .exp-header-right {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: var(--sage-ink);
-}
-
-/* --- Cuerpo del ítem de experiencia --- */
-
-.cv-page.sage .exp-body {
-    padding: 4px 0 0 12px;
-    margin-left: 8px;
-    border-left: 2px solid var(--sage-bg);
-}
-
-.cv-page.sage .exp-job-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--sage-ink);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-}
-
-.cv-page.sage .exp-desc {
-    font-size: 10px;
-    line-height: 1.4;
-    color: var(--sage-muted);
-    margin-bottom: 6px;
-    text-align: justify;
-}
-
-.cv-page.sage .exp-list {
-    font-size: 10px;
-    line-height: 1.4;
-    color: var(--sage-muted);
-    padding-left: 12px;
-}
-
-.cv-page.sage .exp-list li {
-    margin-bottom: 3px;
-}
-
-/* ==========================================================================
-   BOTONES DE CERTIFICADO / PROYECTO
-   ========================================================================== */
-
-.cv-page.sage .cert-btn {
-    display: inline-block;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: var(--sage-line);
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-top: 5px;
-    transition: background-color 0.2s;
-}
-
-.cv-page.sage .cert-btn:hover {
-    background-color: var(--sage-bg);
-}
-
-/* ==========================================================================
-   INTERESES Y HOBBIES
-   Sección inferior centrada con iconos circulares
-   ========================================================================== */
-
-.cv-page.sage .interest-icon-box {
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--sage-accent-light);
-    border-radius: 50%;
-    border: 1.5px solid var(--sage-line);
-    flex-shrink: 0;
-}
-
-.cv-page.sage .interest-icon-box svg {
-    width: 12px;
-    height: 12px;
-    fill: var(--sage-ink);
-}
-
-.cv-page.sage .interests-section {
-    margin-top: 25px;
-    text-align: center;
-}
-
-/* --- Mini-encabezado con líneas flanqueantes --- */
-
-.cv-page.sage .mini-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.cv-page.sage .mini-line {
-    flex-grow: 1;
-    border-top: 2px solid var(--sage-line);
-}
-
-.cv-page.sage .mini-title {
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--sage-ink);
-    text-transform: uppercase;
-}
-
-.cv-page.sage .interests-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ==========================================================================
+       ENCABEZADO Y CONTACTO
+       Banda superior con foto centrada y columnas de contacto a los lados
+       ========================================================================== */
+
+    .header-spacing {
+        height: 40px;
+    }
+
+    .top-band {
+        background-color: var(--sage-bg);
+        border-top: 4px solid var(--sage-line);
+        border-bottom: 4px solid var(--sage-line);
+        height: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    /* --- Foto de Perfil --- */
+    .profile-pic {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px;
+        height: 150px;
+        background-color: var(--sage-bg);
+        border: 4px solid var(--sage-line);
+        z-index: 10;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-radius 0.2s ease;
+
+        &.shape-circle {
+            border-radius: 50%;
+        }
+
+        &.shape-rounded {
+            border-radius: 16px;
+        }
+
+        &.shape-square {
+            border-radius: 4px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        svg {
+            width: 70%;
+            height: 70%;
+        }
+    }
+
+    /* --- Columnas de Contacto (izquierda y derecha de la foto) --- */
+    .contact-col {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 16px;
+
+        &.left {
+            left: 0;
+            right: calc(50% + 75px);
+            align-items: flex-end;
+            padding-left: 20px;
+        }
+
+        &.right {
+            left: calc(50% + 75px);
+            right: 0;
+            align-items: flex-start;
+            padding-right: 20px;
+        }
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        &.left {
+            justify-content: flex-end;
+
+            .contact-text {
+                margin-right: 12px;
+            }
+        }
+
+        &.right {
+            justify-content: flex-start;
+
+            .contact-text {
+                margin-left: 12px;
+            }
+        }
+    }
+
+    .contact-text {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: var(--sage-ink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    /* --- Iconos circulares de contacto --- */
+    .icon-circle {
+        width: 28px;
+        height: 28px;
+        background-color: var(--sage-line);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        z-index: 5;
+
+        svg {
+            width: 12px;
+            height: 12px;
+            fill: #ffffff;
+        }
+    }
+
+    .contact-line {
+        height: 2px;
+        background-color: var(--sage-line);
+        flex-shrink: 0;
+        width: 45px;
+    }
+
+    /* ==========================================================================
+       TÍTULO Y PERFIL PROFESIONAL
+       Nombre centrado con líneas flanqueantes, cargo y descripción
+       ========================================================================== */
+
+    .intro-section {
+        padding: 30px 45px 20px;
+        text-align: center;
+    }
+
+    .name-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        margin-left: -45px;
+        margin-right: -45px;
+    }
+
+    .name-line {
+        flex-grow: 1;
+        border-bottom: 2px solid var(--sage-line);
+    }
+
+    .name {
+        font-size: 30px;
+        letter-spacing: 6px;
+        margin: 0 10px;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .name-first {
+        font-weight: 700;
+        color: var(--sage-ink);
+    }
+
+    .name-last {
+        font-weight: 700;
+        color: var(--sage-bg);
+    }
+
+    .job-title {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        color: var(--sage-muted);
+        margin-bottom: 15px;
+    }
+
+    .profile-desc {
+        font-size: 11px;
+        line-height: 1.6;
+        color: var(--sage-muted);
+        text-align: justify;
+    }
+
+    /* ==========================================================================
+       DISEÑO DE 3 COLUMNAS
+       Grid de tres columnas para Formación, Expertise y Habilidades
+       ========================================================================== */
+
+    .three-columns {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        padding: 0 35px;
+        margin-bottom: 20px;
+    }
+
+    .col {
+        padding: 0 15px;
+
+        &.bordered {
+            border-left: 1.5px solid var(--sage-accent-light);
+        }
+    }
+
+    /* --- Encabezados tipo "Píldora" (fila de 3) --- */
+    .three-pills-container {
+        position: relative;
+        margin-bottom: 20px;
+        padding: 0 35px;
+    }
+
+    .three-pills-line {
+        position: absolute;
+        top: 50%;
+        left: calc(35px + (100% - 70px) / 6);
+        right: calc(35px + (100% - 70px) / 6);
+        height: 2px;
+        border-top: 2px solid var(--sage-line);
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    .three-pills-row {
+        display: flex;
+        position: relative;
+        z-index: 2;
+    }
+
+    .pill-col {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pill-title {
+        background: var(--sage-pill-bg);
+        color: #fff;
+        border: 2px solid var(--sage-pill-border);
+        border-radius: 999px;
+        text-align: center;
+        padding: 8px 18px 7px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        z-index: 3;
+        white-space: nowrap;
+    }
+
+    /* --- Columna 1: Formación Académica --- */
+    .ed-block {
+        text-align: center;
+        margin-bottom: 18px;
+    }
+
+    .ed-title {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: var(--sage-ink);
+        margin-bottom: 4px;
+        text-transform: uppercase;
+    }
+
+    .ed-detail {
+        font-size: 9.5px;
+        color: var(--sage-muted);
+        margin-bottom: 2px;
+        font-weight: 600;
+
+        &.item-desc {
+            font-size: 9px;
+            margin-top: 4px;
+            text-align: center;
+            line-height: 1.4;
+        }
+    }
+
+    /* --- Columna 2: Expertise --- */
+    .expertise-list {
+        list-style: none;
+        text-align: center;
+
+        li {
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--sage-ink);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+    }
+
+    /* --- Columna 3: Habilidades con barra de progreso --- */
+    .skill-block {
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .skill-name {
+        display: block;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--sage-ink);
+        margin-bottom: 4px;
+    }
+
+    .progress-bg {
+        background-color: var(--sage-progress-bg);
+        height: 6px;
+        border-radius: 10px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        background-color: var(--sage-line);
+        height: 100%;
+        border-radius: 10px;
+    }
+
+    /* ==========================================================================
+       EXPERIENCIA LABORAL
+       Sección a ancho completo con encabezado píldora y tarjetas de experiencia
+       ========================================================================== */
+
+    .experience-section {
+        padding: 0 35px;
+
+        .pill-wrapper {
+            margin-left: -35px;
+            margin-right: -35px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .pill-line {
+            flex-grow: 1;
+            border-top: 2px solid var(--sage-line);
+        }
+
+        .pill-title {
+            background: var(--sage-pill-bg);
+            color: #fff;
+            border: 2px solid var(--sage-pill-border);
+            border-radius: 999px;
+            text-align: center;
+            padding: 8px 24px 7px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 3;
+        }
+    }
+
+    /* --- Contenedor y tarjetas de experiencia --- */
+    .exp-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .exp-item {
+        border: none;
+        background-color: transparent;
+        overflow: hidden;
+    }
+
+    .exp-header-row {
+        background-color: var(--sage-accent-light);
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 4px;
+    }
+
+    .exp-header-left {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .exp-company {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--sage-ink);
+        text-transform: uppercase;
+    }
+
+    .exp-separator {
+        color: var(--sage-muted);
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    .exp-location {
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: var(--sage-muted);
+        text-transform: uppercase;
+    }
+
+    .exp-header-right {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: var(--sage-ink);
+    }
+
+    /* --- Cuerpo del ítem de experiencia --- */
+    .exp-body {
+        padding: 4px 0 0 12px;
+        margin-left: 8px;
+        border-left: 2px solid var(--sage-bg);
+    }
+
+    .exp-job-title {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--sage-ink);
+        margin-bottom: 4px;
+        text-transform: uppercase;
+    }
+
+    .exp-desc {
+        font-size: 10px;
+        line-height: 1.4;
+        color: var(--sage-muted);
+        margin-bottom: 6px;
+        text-align: justify;
+    }
+
+    .exp-list {
+        font-size: 10px;
+        line-height: 1.4;
+        color: var(--sage-muted);
+        padding-left: 12px;
+
+        li {
+            margin-bottom: 3px;
+        }
+    }
+
+    /* ==========================================================================
+       BOTONES DE CERTIFICADO / PROYECTO
+       ========================================================================== */
+
+    .cert-btn {
+        display: inline-block;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: var(--sage-line);
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-top: 5px;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: var(--sage-bg);
+        }
+    }
+
+    /* ==========================================================================
+       INTERESES Y HOBBIES
+       Sección inferior centrada con iconos circulares
+       ========================================================================== */
+
+    .interest-icon-box {
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--sage-accent-light);
+        border-radius: 50%;
+        border: 1.5px solid var(--sage-line);
+        flex-shrink: 0;
+
+        svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--sage-ink);
+        }
+    }
+
+    .interests-section {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    /* --- Mini-encabezado con líneas flanqueantes --- */
+    .mini-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .mini-line {
+        flex-grow: 1;
+        border-top: 2px solid var(--sage-line);
+    }
+
+    .mini-title {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--sage-ink);
+        text-transform: uppercase;
+    }
+
+    .interests-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
 }

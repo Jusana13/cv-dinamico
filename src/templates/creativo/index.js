@@ -144,8 +144,12 @@ export function render(data) {
           <!-- Onda dorada principal superior (para foto a la izquierda, título a la derecha) -->
           <path d="M 0 0 H 210 V 22 C 130 24, 70 52, 38 65 C 20 70, 10 60, 0 52 Z" fill="var(--accent)" />
           
-          <!-- Curva de acento amarillo claro en la esquina inferior derecha -->
-          <path d="M 210 297 H 175 C 190 280, 205 285, 210 297 Z" fill="var(--accent)" opacity="0.12" />
+          <!-- Ondas decorativas en la parte inferior (coherentes con el diseño superior) -->
+          <!-- Onda crema de fondo inferior -->
+          <path d="M 0 297 V 280 C 60 285, 120 270, 160 278 C 185 281, 200 272, 210 268 V 297 Z" fill="var(--bg-light)" />
+          
+          <!-- Onda dorada sutil inferior -->
+          <path d="M 0 297 V 286 C 50 290, 100 276, 150 283 C 180 286, 200 277, 210 274 V 297 Z" fill="var(--accent)" opacity="0.15" />
         </svg>
       </div>
       

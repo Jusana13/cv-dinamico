@@ -1,0 +1,88 @@
+<svg viewBox="0 0 160 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Papel / Fondo -->
+  <rect width="160" height="220" rx="8" fill="var(--preview-rose, #ffffff)" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Cabecera Oscura -->
+  <path d="M1 8C1 4.13401 4.13401 1 8 1H152C155.866 1 159 4.13401 159 8V55H1V8Z" fill="var(--preview-primary, #1a1b1e)"/>
+  
+  <!-- Nombre y Profesión (Líneas Claras en Cabecera) -->
+  <rect x="12" y="12" width="60" height="8" rx="2" fill="#ffffff" opacity="0.9"/>
+  <rect x="12" y="24" width="40" height="4" rx="1.5" fill="#ffffff" opacity="0.7"/>
+  
+  <!-- Contacto (Líneas Claras en Cabecera) -->
+  <rect x="12" y="38" width="20" height="3" rx="1.5" fill="#94a3b8" opacity="0.6"/>
+  <rect x="36" y="38" width="20" height="3" rx="1.5" fill="#94a3b8" opacity="0.6"/>
+  <rect x="12" y="45" width="20" height="3" rx="1.5" fill="#94a3b8" opacity="0.6"/>
+  
+  <!-- Perfil en Cabecera Derecha -->
+  <rect x="90" y="12" width="45" height="3" rx="1" fill="#ffffff" opacity="0.8"/>
+  <rect x="90" y="19" width="45" height="2" rx="1" fill="#cbd5e1" opacity="0.7"/>
+  <rect x="90" y="24" width="45" height="2" rx="1" fill="#cbd5e1" opacity="0.7"/>
+  <rect x="90" y="29" width="30" height="2" rx="1" fill="#cbd5e1" opacity="0.7"/>
+
+  <!-- Columna Izquierda (Clara - Experiencia y Habilidades) -->
+  <!-- Título Experiencia -->
+  <rect x="12" y="68" width="50" height="4" rx="2" fill="var(--preview-primary, #1a1b1e)"/>
+  
+  <!-- Items Experiencia -->
+  <rect x="12" y="78" width="60" height="3" rx="1" fill="var(--preview-primary, #1a1b1e)"/>
+  <rect x="12" y="85" width="65" height="2" rx="1" fill="#64748b"/>
+  <rect x="12" y="89" width="65" height="2" rx="1" fill="#64748b"/>
+  <rect x="12" y="93" width="40" height="2" rx="1" fill="#64748b"/>
+  
+  <rect x="12" y="103" width="60" height="3" rx="1" fill="var(--preview-primary, #1a1b1e)"/>
+  <rect x="12" y="110" width="65" height="2" rx="1" fill="#64748b"/>
+  <rect x="12" y="114" width="65" height="2" rx="1" fill="#64748b"/>
+  <rect x="12" y="118" width="50" height="2" rx="1" fill="#64748b"/>
+
+  <!-- Título Skills -->
+  <rect x="12" y="130" width="40" height="4" rx="2" fill="var(--preview-primary, #1a1b1e)"/>
+  
+  <!-- Items Skills (Barras de progreso horizontales apiladas) -->
+  <!-- Skill 1 -->
+  <rect x="12" y="139" width="30" height="3" rx="1.5" fill="#475569"/>
+  <rect x="12" y="145" width="65" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)" opacity="0.15"/>
+  <rect x="12" y="145" width="45" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)"/>
+
+  <!-- Skill 2 -->
+  <rect x="12" y="152" width="20" height="3" rx="1.5" fill="#475569"/>
+  <rect x="12" y="158" width="65" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)" opacity="0.15"/>
+  <rect x="12" y="158" width="55" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)"/>
+
+  <!-- Skill 3 -->
+  <rect x="12" y="165" width="35" height="3" rx="1.5" fill="#475569"/>
+  <rect x="12" y="171" width="65" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)" opacity="0.15"/>
+  <rect x="12" y="171" width="25" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)"/>
+
+  <!-- Título Idiomas -->
+  <rect x="12" y="184" width="40" height="4" rx="2" fill="var(--preview-primary, #1a1b1e)"/>
+  
+  <!-- Idioma 1 -->
+  <rect x="12" y="193" width="25" height="3" rx="1.5" fill="#475569"/>
+  <rect x="12" y="199" width="65" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)" opacity="0.15"/>
+  <rect x="12" y="199" width="40" height="3" rx="1.5" fill="var(--preview-primary, #1a1b1e)"/>
+
+  <!-- ELEMENTOS FLOTANTES A LA DERECHA -->
+  <!-- Foto Flotante (Beige) -->
+  <rect x="94" y="38" width="54" height="60" rx="0" fill="var(--preview-accent, #e5dfd3)" stroke="#ffffff" stroke-width="2"/>
+  <!-- Silueta interna minimalista -->
+  <circle cx="121" cy="62" r="10" fill="#ffffff" opacity="0.6"/>
+  <path d="M106 86C106 78 112.7 72 121 72C129.3 72 136 78 136 86H106Z" fill="#ffffff" opacity="0.6"/>
+
+  <!-- Educación Flotante (Fondo Oscuro) -->
+  <path d="M94 106H148V210C148 214.418 144.418 218 140 218H98C93.5817 218 90 214.418 90 210V110C90 107.791 91.7909 106 94 106Z" fill="var(--preview-primary, #1a1b1e)" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Título Educación -->
+  <rect x="98" y="116" width="40" height="3" rx="1.5" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Items Educación -->
+  <rect x="98" y="126" width="42" height="2" rx="1" fill="#ffffff"/>
+  <rect x="98" y="131" width="35" height="2" rx="1" fill="#cbd5e1" opacity="0.8"/>
+  <rect x="98" y="136" width="44" height="1.5" rx="0.75" fill="#94a3b8"/>
+  <rect x="98" y="140" width="30" height="1.5" rx="0.75" fill="#94a3b8"/>
+
+  <rect x="98" y="152" width="42" height="2" rx="1" fill="#ffffff"/>
+  <rect x="98" y="157" width="35" height="2" rx="1" fill="#cbd5e1" opacity="0.8"/>
+  <rect x="98" y="162" width="44" height="1.5" rx="0.75" fill="#94a3b8"/>
+  <rect x="98" y="166" width="20" height="1.5" rx="0.75" fill="#94a3b8"/>
+</svg>

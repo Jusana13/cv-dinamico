@@ -284,5 +284,41 @@
       "accent": "Fondo del Papel",
       "textColor": "Texto del CV"
     }
+  },
+  {
+    "id": "split",
+    "name": "Split",
+    "thumbnail": "./src/templates/split/thumbnail.svg",
+    "defaultPhotoShape": "square",
+    "supportedPhotoShapes": ["square", "rounded"],
+    "defaultFont": "Montserrat",
+    "features": {
+      "buttons": true,
+      "skillLevels": true,
+      "skillPercentage": true,
+      "languageLevels": true,
+      "personality": false,
+      "personalityLevels": false,
+      "techSkills": false
+    },
+    "defaultDataOverrides": {
+      "experience": 2,
+      "education": 2
+    },
+    "tabOrder": [
+      "sec-personal",
+      "sec-contact",
+      "sec-experience",
+      "sec-skills",
+      "sec-languages",
+      "sec-interests",
+      "sec-education",
+      "sec-design"
+    ],
+    "colors": {
+      "primary": "Cabecera y Educación (Oscuro)",
+      "accent": "Detalles y Bordes (Acento)",
+      "bgLight": "Fondo Principal (Claro)"
+    }
   }
 ]

@@ -489,7 +489,8 @@ const defaultData = {
     asimetrico: { primary: '#111316', accent: '#a68d73' },
     sage: { primary: '#c5ded6', accent: '#354240' },
     sobrio: { primary: '#EAEAE6', accent: '#222222' },
-    estrella: { primary: '#4D4D4B', accent: '#F8F7F4', textColor: '#5A5A58' }
+    estrella: { primary: '#4D4D4B', accent: '#F8F7F4', textColor: '#5A5A58' },
+    split: { primary: '#1a1b1e', accent: '#e5dfd3', bgLight: '#ffffff' }
   },
   fonts: {
     moderno: 'Plus Jakarta Sans',
@@ -500,7 +501,8 @@ const defaultData = {
     asimetrico: 'Montserrat',
     sage: 'Montserrat',
     sobrio: 'Montserrat',
-    estrella: 'Montserrat'
+    estrella: 'Montserrat',
+    split: 'Montserrat'
   }
 };
 
@@ -785,7 +787,6 @@ function saveState() {
 function migrateState(stateObj) {
   if (!stateObj) return;
 
-  // Asegurar migración de nombres de marcador de posición antiguos a los nuevos simplificados
   if (stateObj.personal) {
     if (stateObj.personal.name === 'AQUÍ VA TU NOMBRE') {
       stateObj.personal.name = 'Nombres y';
@@ -795,6 +796,12 @@ function migrateState(stateObj) {
     }
     if (stateObj.personal.profession === 'Tu Profesión / Especialidad') {
       stateObj.personal.profession = 'Profesión / Especialidad';
+    }
+    // Validar forma de foto según las formas soportadas de la plantilla activa
+    const activeTmpl = stateObj.activeTemplate || 'moderno';
+    const supportedShapes = getTemplateSupportedShapes(activeTmpl);
+    if (!stateObj.personal.photoShape || !supportedShapes.includes(stateObj.personal.photoShape)) {
+      stateObj.personal.photoShape = getDefaultPhotoShape(activeTmpl);
     }
   }
 
@@ -953,14 +960,18 @@ function getDefaultPhotoShape(templateId) {
   return 'circle';
 }
 
-function getActiveTemplateSupportedShapes() {
+function getTemplateSupportedShapes(templateId) {
   if (templatesConfig) {
-    const config = templatesConfig.find(t => t.id === (state ? state.activeTemplate : 'moderno'));
+    const config = templatesConfig.find(t => t.id === templateId);
     if (config && config.supportedPhotoShapes) {
       return config.supportedPhotoShapes;
     }
   }
   return ['circle', 'rounded', 'square']; // Valor por defecto si no se especifica
+}
+
+function getActiveTemplateSupportedShapes() {
+  return getTemplateSupportedShapes(state ? state.activeTemplate : 'moderno');
 }
 
 function renderShapeToggles() {

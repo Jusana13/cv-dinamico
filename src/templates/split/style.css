@@ -1,0 +1,558 @@
+/* ==========================================================================
+   ESTILOS DE LA PLANTILLA "SPLIT" (A4 - 794px x 1123px)
+   ========================================================================== */
+
+/* Contenedor principal de la hoja */
+.cv-page.split {
+  position: relative;
+  width: 794px;
+  height: 1123px;
+  background-color: var(--bg-light, #ffffff);
+  color: #1e293b;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* --- FILA SUPERIOR (OSCURA) --- */
+  .cv-header {
+    background-color: var(--primary, #1a1b1e);
+    color: #ffffff;
+    height: 281px;
+    display: flex;
+    padding: 42px;
+    box-sizing: border-box;
+
+    .cv-col-left {
+      width: 55%;
+      padding-right: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+    .cv-col-right {
+      width: 45%;
+      padding-left: 32px;
+      box-sizing: border-box;
+    }
+
+    /* Bloque de Nombre */
+    .name-box {
+      h1 {
+        font-size: 26px;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.5px;
+        margin-bottom: 6px;
+        color: #ffffff;
+        text-transform: uppercase;
+
+        span {
+          color: #ffffff;
+          /* El nombre es completamente blanco en la plantilla de referencia */
+        }
+      }
+
+      .profession {
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #94a3b8;
+        margin-bottom: 0;
+      }
+    }
+
+    /* Datos de Contacto en la cabecera */
+    .contact-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .contact-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      color: #ffffff;
+
+      svg {
+        width: 12px;
+        height: 12px;
+        fill: currentColor;
+      }
+    }
+
+    .contact-text {
+      a {
+        color: #cbd5e1;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          color: #ffffff;
+        }
+      }
+    }
+
+    /* Perfil en la cabecera derecha */
+    .section-profile {
+      margin-bottom: 0;
+    }
+
+    .profile-content {
+      .profile-text {
+        font-size: 11px;
+        line-height: 1.4;
+        color: #cbd5e1;
+        margin-bottom: 6px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    /* Línea de título de sección blanca para cabecera */
+    .section-title {
+      border-bottom: 2px solid #ffffff;
+
+      h2 {
+        color: #ffffff;
+      }
+    }
+  }
+
+  /* --- FILA INFERIOR (CLARA) --- */
+  .cv-body-left {
+    background-color: var(--bg-light, #ffffff);
+    color: #1e293b;
+    width: 55%;
+    height: 842px;
+    /* 1123 - 281 = 842px */
+    padding: 42px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Títulos de sección por defecto en la parte clara */
+  .section-title {
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--primary, #1a1b1e);
+    padding-bottom: 4px;
+
+    h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary, #1a1b1e);
+      margin: 0;
+    }
+  }
+
+  .section {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Estilos de los ítems de lista (Experiencia y Educación) */
+  .item {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+
+  .item-bullet {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--primary, #1a1b1e);
+    flex-shrink: 0;
+  }
+
+  .item-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--primary, #1a1b1e);
+  }
+
+  .item-date {
+    font-size: 10px;
+    font-weight: 500;
+    color: #64748b;
+    margin-left: 4px;
+    white-space: nowrap;
+  }
+
+  .item-content-wrapper {
+    padding-left: 14px;
+  }
+
+  .item-subtitle {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 4px;
+  }
+
+  .item-desc {
+    font-size: 10px;
+    line-height: 1.35;
+    color: #475569;
+  }
+
+  /* Listas compactas de viñetas */
+  .compact-list {
+    padding-left: 14px;
+    margin: 4px 0 0 0;
+
+    li {
+      margin-bottom: 3px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  /* Botón de Enlace/Proyecto */
+  .cert-btn {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--primary, #1a1b1e);
+    text-decoration: none;
+    border: 1px solid var(--accent, #e5dfd3);
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+    background-color: transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--accent, #e5dfd3);
+      color: var(--primary, #1a1b1e);
+    }
+  }
+
+  /* --- HABILIDADES & IDIOMAS (Barras de progreso horizontales) --- */
+  .skills-wrapper,
+  .langs-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .skill-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .skill-name {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--primary, #1a1b1e);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lang-level {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .progress-bg {
+      background-color: color-mix(in srgb, var(--primary, #1a1b1e) 10%, #ffffff);
+      height: 8px;
+      width: 100%;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background-color: var(--primary, #1a1b1e);
+      height: 100%;
+      border-radius: 99px;
+    }
+  }
+
+  /* --- INTERESES / ICONOS --- */
+  .hobby-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hobby-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: var(--primary, #1a1b1e);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: var(--primary, #1a1b1e);
+      color: #ffffff;
+      border-color: var(--primary, #1a1b1e);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+  }
+
+  /* ==========================================================================
+     ELEMENTOS FLOTANTES A LA DERECHA
+     ========================================================================== */
+
+  /* Foto Flotante */
+  .cv-floating-photo {
+    position: absolute;
+    top: 187px;
+    right: 10px;
+    width: calc(45% - 10px);
+    height: 356px;
+    background-color: var(--accent, #e5dfd3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-sizing: border-box;
+
+    &.shape-circle {
+      border-radius: 50%;
+      width: 320px;
+      height: 320px;
+      top: 187px;
+    }
+
+    &.shape-rounded {
+      border-radius: 16px;
+    }
+
+    &.shape-square {
+      border-radius: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    svg {
+      width: 50%;
+      height: 50%;
+      fill: #94a3b8;
+      background: transparent;
+    }
+  }
+
+  /* Educación Flotante (Tarjeta Oscura) */
+  .cv-floating-education {
+    position: absolute;
+    top: 550px;
+    right: 10px;
+    width: calc(45% - 10px);
+    height: 565px;
+    background-color: var(--primary, #1a1b1e);
+    color: #ffffff;
+    padding: 32px 24px 64px 24px;
+    box-shadow: -5px -5px 20px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    z-index: 4;
+    overflow: hidden;
+
+    /* Sobrescribir colores para la sección de Educación en tarjeta oscura */
+    .section-title {
+      border-bottom: 2px solid #ffffff;
+
+      h2 {
+        color: #ffffff;
+      }
+    }
+
+    .item-bullet {
+      color: #ffffff;
+    }
+
+    .item-title {
+      color: #ffffff;
+    }
+
+    .item-date {
+      color: #cbd5e1;
+    }
+
+    .item-subtitle {
+      color: #cbd5e1;
+    }
+
+    .item-desc {
+      color: #94a3b8;
+    }
+
+    .cert-btn {
+      color: #ffffff;
+      border-color: var(--accent, #e5dfd3);
+
+      &:hover {
+        background-color: var(--accent, #e5dfd3);
+        color: var(--primary, #1a1b1e);
+      }
+    }
+
+    /* Footer de redes sociales en la tarjeta de educación */
+    .education-social-footer {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 12px;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      color: #ffffff;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES PARA IMPRESIÓN (PRINT MEDIA QUERY)
+   ========================================================================== */
+@media print {
+  .cv-page.split {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+
+    .cv-header {
+      height: 74.3mm !important;
+      padding: 11mm !important;
+
+      .cv-col-left {
+        padding-right: 8mm !important;
+      }
+
+      .cv-col-right {
+        padding-left: 8mm !important;
+      }
+    }
+
+    .cv-body-left {
+      height: 222.7mm !important;
+      padding: 11mm !important;
+    }
+
+    .cv-floating-photo {
+      top: 49.5mm !important;
+      right: 2.6mm !important;
+      width: 91.9mm !important;
+      height: 94.2mm !important;
+      border-width: 1.3mm !important;
+
+      &.shape-circle {
+        width: 84.7mm !important;
+        height: 84.7mm !important;
+        top: 49.5mm !important;
+      }
+    }
+
+    .cv-floating-education {
+      top: 143.7mm !important;
+      right: 2.6mm !important;
+      width: 91.9mm !important;
+      height: 150.9mm !important;
+      border-left-width: 1.3mm !important;
+      border-top-width: 1.3mm !important;
+      padding: 8.5mm 6.3mm 17mm 6.3mm !important;
+
+      .education-social-footer {
+        bottom: 5.3mm !important;
+        left: 6.3mm !important;
+        right: 6.3mm !important;
+        padding-top: 3.2mm !important;
+      }
+    }
+  }
+}

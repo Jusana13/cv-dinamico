@@ -2,6 +2,12 @@
   <!-- White background rect -->
   <rect width="110" height="155" fill="#ffffff" />
   
+  <!-- Cream bottom background wave -->
+  <path d="M 0 155 V 146 C 31 149, 63 141, 84 145 C 97 147, 105 142, 110 140 V 155 Z" fill="var(--preview-rose, #fdf8ec)" />
+  
+  <!-- Sutil gold/yellow bottom wave -->
+  <path d="M 0 155 V 149 C 26 151, 52 144, 79 148 C 94 149, 105 145, 110 143 V 155 Z" fill="var(--preview-accent, #f4b844)" opacity="0.15" />
+  
   <!-- Cream top background wave -->
   <path d="M 0 0 H 110 V 15 C 80 12, 55 20, 0 48 Z" fill="var(--preview-rose, #fdf8ec)" />
   
