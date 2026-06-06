@@ -5,6 +5,7 @@
    ========================================================================== */
 
 import { INTEREST_ICONS, UI_ICONS } from './icon-library.js';
+import { initGrammarChecker } from './grammar-checker.js';
 
 /* ==========================================================================
    FUNCIONES AUXILIARES DE SINGULARIZACIÓN Y FORMATO
@@ -3041,4 +3042,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   await updatePreview();
   updateThumbnailColors();
   setupEventListeners();
+  initGrammarChecker();
 });
+
+export {
+  state,
+  updatePreview,
+  renderAllForms,
+  saveState,
+  getSingularForSection,
+  getDeepValue,
+  setDeepValue
+};

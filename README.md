@@ -69,6 +69,19 @@ Las secciones con layouts idénticos en una plantilla (ej. bloques de Experienci
 
 ---
 
+## Corrección Ortográfica y Gramatical
+
+La aplicación incorpora una herramienta de revisión y corrección de textos en tiempo real integrada con la API de LanguageTool. Al pulsar el botón "Corregir Ortografía" en la barra superior:
+
+1. **Análisis en lote**: El sistema recopila todos los campos de texto editables del currículum (profesión, descripción, viñetas de experiencia, formación, habilidades y cualidades) y los procesa en una única petición HTTP para optimizar el rendimiento y evitar bloqueos por límite de peticiones.
+2. **Resaltado y sugerencias**: Los errores detectados se muestran en un modal con formato de tarjeta por campo, donde se resaltan los errores en rojo y se ofrecen botones interactivos con las sugerencias de corrección.
+3. **Mapeo y desplazamiento de índices**: Al aplicar una corrección individual, el motor actualiza el estado profundo del currículum y reajusta automáticamente las posiciones de los errores restantes de ese mismo campo para evitar solapamientos de texto.
+4. **Corrección masiva**: Se incluye la opción de aplicar la primera sugerencia para todas las inconsistencias detectadas en una sola acción, procesándolas de derecha a izquierda por campo para mantener la integridad de los índices del texto.
+
+Este módulo se encuentra completamente aislado en `src/js/grammar-checker.js` y no interfiere con el ciclo de vida o la carga inicial de la aplicación, garantizando que el editor siga siendo 100% operativo de manera local incluso en ausencia de conexión a internet o fallos en el servicio externo.
+
+---
+
 ## Cómo ejecutar el proyecto localmente
 
 ### Requisitos previos
@@ -88,7 +101,7 @@ Las secciones con layouts idénticos en una plantilla (ej. bloques de Experienci
 
 ---
 
-## 🎨 Cómo añadir una nueva plantilla al catálogo
+## Cómo añadir una nueva plantilla al catálogo
 
 Para añadir una plantilla llamada `mi-plantilla`:
 

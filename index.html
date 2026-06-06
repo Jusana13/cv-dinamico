@@ -89,6 +89,13 @@
           </svg>
           <span>Guardar Progreso</span>
         </button>
+        <button id="btn-grammar-check" class="btn" title="Revisar ortografía y gramática del CV">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          <span>Corregir Ortografía</span>
+        </button>
         <button id="btn-print-only" class="btn btn-primary" title="Imprimir o Guardar currículum como PDF vectorial de alta calidad">
           <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
@@ -845,6 +852,43 @@
       <div class="modal-body">
         <div class="template-grid" id="template-modal-grid">
           <!-- Las tarjetas de plantilla se renderizarán de forma dinámica aquí -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Corrección Ortográfica -->
+  <div id="grammar-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title-wrapper">
+          <h2>Revisión Ortográfica y Gramatical</h2>
+          <span id="grammar-badge" class="template-badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; display: none;">0 Errores</span>
+        </div>
+        <button id="btn-close-grammar-modal" class="btn-close-modal" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body" id="grammar-modal-body">
+        <div id="grammar-loading" class="grammar-loading-state" style="display: none;">
+          <div class="grammar-loader-spinner"></div>
+          <p>Analizando el texto de tu currículum...</p>
+        </div>
+        <div id="grammar-empty" class="grammar-empty-state" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 64px; height: 64px; margin-bottom: 16px; display: inline-block;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          <h3>¡Tu currículum está perfecto!</h3>
+          <p>No se han encontrado errores ortográficos o gramaticales en tus textos.</p>
+        </div>
+        <div id="grammar-results-container" class="grammar-results-list">
+          <!-- Las tarjetas de resultados irán aquí -->
+        </div>
+      </div>
+      <div class="modal-footer" id="grammar-modal-footer" style="padding: 18px 32px; border-top: 1px solid rgba(255, 255, 255, 0.06); display: flex; justify-content: space-between; align-items: center; background: rgba(23, 28, 36, 0.5);">
+        <span class="db-info-text m-0" style="font-size: 11px;">Powered by LanguageTool API</span>
+        <div class="modal-footer-row m-0" style="gap: 12px; display: flex; align-items: center;">
+          <button id="btn-apply-all-grammar" class="btn btn-primary" style="display: none;">Aplicar todas las sugerencias</button>
+          <button id="btn-close-grammar-modal-foot" class="btn-secondary-custom">Cerrar</button>
         </div>
       </div>
     </div>
