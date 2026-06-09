@@ -12,6 +12,7 @@ import {
   state,
   defaultData,
   templatesConfig,
+  setState,
   loadState,
   saveState,
   loadTemplatesConfig,
@@ -35,6 +36,8 @@ import {
   setCurrentZoomMode,
   setZoomScale,
   injectDynamicFontCSS,
+  hidePreviewLoader,
+  showPreviewError,
   clearRendererCache
 } from './cv-renderer.js';
 import {
@@ -1084,7 +1087,7 @@ function setupEventListeners() {
 // INSTANCIACIÓN DE LA APLICACIÓN
 // ==========================================================================
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function initializeApplication() {
   await loadTemplatesConfig();
   loadState();
   await initTemplateSelector();
@@ -1093,6 +1096,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateThumbnailColors();
   setupEventListeners();
   initGrammarChecker();
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await initializeApplication();
+  } catch (error) {
+    console.error('Error durante la inicialización de la aplicación:', error);
+    showPreviewError(
+      'No se pudo completar el arranque del editor.',
+      'Revisa la consola para identificar el módulo o configuración que falló.'
+    );
+    hidePreviewLoader(false);
+  }
 });
 
 export {

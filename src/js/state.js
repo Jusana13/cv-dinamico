@@ -1,3 +1,4 @@
+/**
  * @fileoverview Creador de CV Dinámico — state.js
  * Módulo de gestión del estado global de la aplicación.
  * Controla la carga, guardado, migración defensiva y sincronización asíncrona de configuraciones de plantillas.
@@ -261,7 +262,7 @@ export async function loadTemplate(templateId) {
     return templateCache[templateId];
   }
   try {
-    const modulePath = `../templates/${templateId}/index.js`;
+    const modulePath = `/src/templates/${templateId}/index.js`;
     const module = await import(modulePath);
 
     const cssResponse = await fetch(`./src/templates/${templateId}/style.css`);
@@ -291,6 +292,11 @@ export async function loadTemplate(templateId) {
 export function migrateState(stateObj) {
   if (!stateObj) return;
 
+  // Inicializar sección de datos personales si no existe
+  if (!stateObj.personal || typeof stateObj.personal !== 'object') {
+    stateObj.personal = JSON.parse(JSON.stringify(defaultData.personal));
+  }
+
   if (stateObj.personal) {
     // Estandarizar valores por defecto viejos que causaban confusión
     if (stateObj.personal.name === 'AQUÍ VA TU NOMBRE') {
@@ -308,6 +314,17 @@ export function migrateState(stateObj) {
     const supportedShapes = getTemplateSupportedShapes(activeTmpl);
     if (!stateObj.personal.photoShape || !supportedShapes.includes(stateObj.personal.photoShape)) {
       stateObj.personal.photoShape = getDefaultPhotoShape(activeTmpl);
+    }
+
+    // Asegurar que el perfil (profile) sea un array (migración desde texto plano legacy)
+    if (stateObj.personal.profile === undefined || stateObj.personal.profile === null) {
+      stateObj.personal.profile = [''];
+    } else if (!Array.isArray(stateObj.personal.profile)) {
+      if (typeof stateObj.personal.profile === 'string') {
+        stateObj.personal.profile = [stateObj.personal.profile];
+      } else {
+        stateObj.personal.profile = [''];
+      }
     }
   }
 
@@ -343,14 +360,22 @@ export function migrateState(stateObj) {
   }
 
   // Sanitizar listas vacías para evitar que la UI quede sin ningún campo inicial
-  const listKeys = ['experience', 'education', 'skills', 'languages', 'techSkills'];
+  const listKeys = ['experience', 'education', 'skills', 'languages', 'techSkills', 'interests', 'personality'];
   listKeys.forEach(k => {
-    if (!stateObj[k]) {
-      stateObj[k] = JSON.parse(JSON.stringify(defaultData[k]));
-    } else if (stateObj[k].length === 0) {
+    if (!stateObj[k] || !Array.isArray(stateObj[k]) || stateObj[k].length === 0) {
       stateObj[k] = JSON.parse(JSON.stringify(defaultData[k]));
     }
   });
+
+  // Asegurar la existencia e integridad de la sección de contacto
+  if (!stateObj.contact || !Array.isArray(stateObj.contact) || stateObj.contact.length === 0) {
+    stateObj.contact = JSON.parse(JSON.stringify(defaultData.contact));
+  }
+
+  // Asegurar la existencia e integridad de los colores
+  if (!stateObj.colors || typeof stateObj.colors !== 'object') {
+    stateObj.colors = JSON.parse(JSON.stringify(defaultData.colors));
+  }
 }
 
 /**

@@ -1,0 +1,144 @@
+# Reporte Técnico de Arquitectura: CV Dinámico
+Este documento describe el funcionamiento esperado, la estructura de archivos, las directrices de modularidad y el flujo de ejecución del proyecto **CV Dinámico**. Este diseño técnico ha sido construido bajo las directrices del guardián del proyecto para asegurar la **eficiencia extrema** (cero frameworks en cliente, actualización en tiempo real, alta fidelidad vectorial) y la **modularidad absoluta** (capacidad de escalar a cientos de plantillas sin tocar la lógica central).
+
+---
+
+## 1. Filosofía de Desarrollo y Objetivos
+
+### Eficiencia Extrema
+* **Cero Frameworks Pesados:** Sin React, Vue o Angular. Carga instantánea basada en HTML5 semántico, CSS3 moderno y Vanilla JavaScript (ES Modules).
+* **Renderizado Síncrono en Tiempo Real:** El previsualizador responde instantáneamente a cada pulsación de tecla (sin técnicas de retardo/debounce en escritura) para dar una sensación fluida de escritorio.
+* **Fidelidad Vectorial en PDF:** Prohibición de exportar capturando imágenes (como `html2canvas` o `html2pdf`). La exportación a PDF se delega en el motor de impresión nativo del navegador (`window.print()`), garantizando textos vectoriales nítidos, seleccionables y de mínimo peso.
+
+### Modularidad de Plantillas (Escalabilidad Declarativa)
+* **Principio de Cero Hardcoding:** Prohibido escribir condicionales basados en nombres de plantilla en el motor central (`app.js`). Por ejemplo, en lugar de hacer `if (activeTemplate === 'sobrio')`, la lógica lee directivas declarativas.
+* **El `config.json` como Fuente de Verdad:** Cada plantilla de currículum declara de forma local en su carpeta sus capacidades, orden de pestañas en el editor, colores por defecto y tipografías. El núcleo de la aplicación es agnóstico y se limita a obedecer estas configuraciones.
+
+---
+
+## 2. Estructura del Proyecto y Encapsulación
+
+El proyecto se divide de forma limpia entre la interfaz del editor (UI) y las plantillas del currículum (CV):
+
+```
+C:\Proyectos\cv-dinamico/
+├── index.html                        # Interfaz principal (tabs del editor y visor del A4)
+├── package.json                      # Configuración de dependencias de desarrollo (Vite)
+├── src/
+│   ├── css/
+│   │   ├── styles.css                # Estilos del editor de escritorio (paneles, formularios)
+│   │   └── responsive.css            # Estilos del editor aislados para móviles (< 1024px)
+│   ├── js/
+│   │   ├── app.js                    # Orquestador: Vinculación de eventos y arranque
+│   │   ├── state.js                  # Propietario del estado global reactivo y persistencia
+│   │   ├── utils.js                  # Funciones de traducción, fechas y formateadores de texto
+│   │   ├── cv-renderer.js            # Inyección de estilos y tipografías en el DOM y auto-escalado
+│   │   ├── form-builder.js           # Generación dinámica de formularios y selectores de la UI
+│   │   ├── grammar-checker.js        # Integración aislada con corrector ortográfico LanguageTool
+│   │   ├── mobile-ui.js              # Lógica táctil y responsiva aislada para dispositivos móviles
+│   │   └── icon-library.js           # Biblioteca unificada de iconos vectoriales SVG
+│   └── templates/
+│       ├── templates-manifest.json   # Índice plano de carpetas de plantillas activas
+│       ├── helpers.js                # Utilidades HTML y SVGs compartidos por los renders
+│       └── [id-plantilla]/           # Encapsulación absoluta por plantilla:
+│           ├── index.js              # render(state) -> Retorna string HTML del CV
+│           ├── style.css             # Estilos de la plantilla del CV (scoped con CSS Nesting)
+│           ├── config.json           # Configuración local de capacidades y colores
+│           └── thumbnail.svg         # Miniatura para el selector modal
+```
+
+---
+
+## 3. Flujo de Ejecución de la Aplicación
+
+El siguiente diagrama detalla cómo arranca la aplicación y cómo se comporta al interactuar:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Browser as Navegador
+    participant App as app.js (Inicio)
+    participant State as state.js
+    participant Form as form-builder.js
+    participant Render as cv-renderer.js
+    
+    Browser->>App: Carga index.html y dispara DOMContentLoaded
+    activate App
+    App->>State: 1. loadTemplatesConfig() (Carga manifest.json y config.json locales)
+    activate State
+    State-->>App: Retorna lista de configuraciones de plantillas
+    deactivate State
+    
+    App->>State: 2. loadState() (Carga de localStorage o defaultData)
+    activate State
+    State->>State: 2.1. migrateState() (Normalización de tipos y campos legacy)
+    State->>State: 2.2. applyTemplateDefaultOverrides() (Ajuste de tamaño inicial)
+    State-->>App: Estado en memoria listo
+    deactivate State
+    
+    App->>App: 3. initTemplateSelector() (Dibuja el modal de plantillas con thumbnails)
+    App->>Form: 4. renderAllForms() (Genera inputs en el panel izquierdo)
+    activate Form
+    Form->>Form: syncStaticInputs()
+    Form->>Form: Renderiza repeaters (Experiencia, Educación, etc.)
+    Form->>Form: syncColorPickers() & syncFontSelector() (Color/fuentes dinámicos de config.json)
+    Form-->>App: Formularios listos en pantalla
+    deactivate Form
+    
+    App->>Render: 5. updatePreview() (Genera el currículum A4)
+    activate Render
+    Render->>State: loadTemplate(activeTemplate) (Importación asíncrona de index.js y style.css)
+    State-->>Render: Módulo JavaScript y texto CSS de la plantilla
+    Render->>Render: injectTemplateCSS() (Estilos scoped) & injectDynamicFontCSS() (Tipografía)
+    Render->>Render: template.render(stateCopy) (Genera HTML dinámico con placeholders si está vacío)
+    Render->>Browser: Inyecta HTML en el contenedor A4 (.cv-preview-container)
+    Render->>Render: scalePreview() (Ajusta escala de zoom para encajar en pantalla)
+    Render->>Render: checkPageOverflow() (Compara scrollHeight vs clientHeight y alerta si excede)
+    Render->>Browser: Oculta spinner "Preparando tu currículum..." (Remueve .is-loading)
+    deactivate Render
+    
+    App->>App: 6. setupEventListeners() (Enlaza eventos de escritura en formularios)
+    App->>App: 7. initGrammarChecker() (Inicializa modal de ortografía)
+    deactivate App
+```
+
+---
+
+## 4. Funcionamiento de Componentes Críticos
+
+### A. Algoritmo de Encogimiento (Shrinkage)
+Cuando el usuario cambia de una plantilla con mayor volumen de campos por defecto (ej. `split` inicia con 2 campos de educación y experiencia) a una más compacta (ej. `moderno` que usa 1), el sistema evalúa los campos adicionales:
+* Llama a `isItemDefault()` para ver si el contenido de los campos extra coincide exactamente con las constantes de fábrica.
+* Si el contenido es por defecto (el usuario no lo editó), la colección se recorta al tamaño estándar de la nueva plantilla.
+* Si el usuario modificó los datos, la información se preserva intacta.
+
+### B. Vinculación Dinámica en la pestaña "Diseño"
+Los selectores de color del panel de Diseño no están vinculados a identificadores estáticos de variables CSS globales.
+1. `syncColorPickers()` lee la propiedad `colors` de la plantilla activa desde su `config.json` local (ej: `"primary": "Fondo", "accent": "Detalles"`).
+2. Genera los selectores de color para estas propiedades y enlaza eventos inmediatos de actualización.
+3. El CSS de la plantilla mapea estas variables dinámicas a nivel local:
+   ```css
+   .cv-page {
+     --primary: var(--cv-color-primary, #111);
+     --accent: var(--cv-color-accent, #666);
+   }
+   ```
+
+### C. Impresión de Currículum a PDF Vectorial
+Para garantizar la mejor nitidez de impresión en papel o PDF:
+1. Al pulsar el botón "Imprimir", se cambia temporalmente el título del documento a uno descriptivo limpio (`cv-[nombre]-[apellido].pdf`).
+2. Se ejecuta `window.print()`.
+3. A través de la hoja de estilos compartida, se aplican reglas `@media print` para ocultar paneles del editor lateral, barras de zoom, botones y mostrar la página A4 al 100% de escala nativa del papel.
+4. Tras dispararse la impresión, se restaura el título de la pestaña original.
+
+---
+
+## 5. Checklist de Mantenimiento y Buenas Prácticas
+
+> [!IMPORTANT]
+> **Antes de subir cambios al repositorio o implementar una nueva plantilla:**
+> 1. Asegúrate de que los archivos JSON se guarden con codificación **UTF-8 sin BOM (UTF-8 Clean)** para evitar errores de parseo en navegadores.
+> 2. No introduzcas importaciones dinámicas que dependan de directorios relativos (`../`) en navegadores; usa siempre rutas absolutas con respecto a la raíz del servidor (`/src/templates/...`).
+> 3. Al añadir campos, asegúrate de añadir las correspondientes salvaguardas de nulidad en la función `migrateState()` del archivo state.js para evitar congelamientos al actualizar usuarios antiguos.
+> 4. Asegura la correcta sintaxis de comentarios de bloque en JS (abrir siempre con `/**` y cerrar con `*/`).
+> 5. Verifica y valida que todas las dependencias y funciones importadas en app.js (como `setState`) estén correctamente declaradas en la cabecera.

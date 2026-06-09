@@ -109,6 +109,53 @@ export function clearRendererCache() {
   lastInjectedFont = null;
 }
 
+/**
+ * Oculta el indicador de carga aunque la renderización falle antes de completar la plantilla.
+ * @param {boolean} useDelay - Mantiene la transición breve cuando la carga terminó correctamente.
+ */
+export function hidePreviewLoader(useDelay = false) {
+  const previewPanel = document.getElementById('preview-panel');
+  const loader = document.getElementById('cv-loader');
+  const activeTemplate = state?.activeTemplate || 'moderno';
+
+  const hide = () => {
+    if (previewPanel) {
+      previewPanel.classList.remove('is-loading');
+    }
+    if (loader) {
+      loader.classList.add('hidden');
+    }
+  };
+
+  if (useDelay) {
+    setTimeout(hide, 150);
+    return;
+  }
+
+  hide();
+}
+
+/**
+ * Muestra un fallo recuperable dentro del área A4 sin bloquear el resto del editor.
+ * @param {string} title - Resumen visible del problema.
+ * @param {string} [detail] - Contexto técnico acotado para depuración.
+ */
+export function showPreviewError(title, detail = '') {
+  const previewContainer = document.querySelector('.cv-preview-container');
+  if (!previewContainer) return;
+
+  previewContainer.innerHTML = `
+    <section class="cv-runtime-error" role="alert">
+      <span class="cv-runtime-error__eyebrow">Vista previa no disponible</span>
+      <h2>${title}</h2>
+      ${detail ? `<p>${detail}</p>` : ''}
+    </section>
+  `;
+
+  scalePreview();
+  hidePreviewLoader(false);
+}
+
 // ==========================================================================
 // AUTO-ESCALADO Y SISTEMA DE DIMENSIONADO DE PANTALLA
 // ==========================================================================
@@ -184,15 +231,124 @@ export function checkPageOverflow() {
  *              (como "Habilidad 1") si los campos del usuario están vacíos.
  *              Resuelve aliases dinámicos de secciones por plantilla y sincroniza la escala y overflow.
  */
+function buildStateForRender() {
+  // La copia evita que los placeholders visuales contaminen el estado editable.
+  const stateForRender = JSON.parse(JSON.stringify(state));
+  if (stateForRender.sectionTitles) {
+    for (const key in stateForRender.sectionTitles) {
+      stateForRender.sectionTitles[key] = getSectionTitle(key);
+    }
+  }
+
+  if (stateForRender.personal) {
+    const p = stateForRender.personal;
+    p.name = (p.name || '').trim() || VISUAL_PLACEHOLDERS.personal.name;
+    p.lastName = (p.lastName || '').trim() || VISUAL_PLACEHOLDERS.personal.lastName;
+    p.profession = (p.profession || '').trim() || VISUAL_PLACEHOLDERS.personal.profession;
+    p.additionalInfo = (p.additionalInfo || '').trim() || VISUAL_PLACEHOLDERS.personal.additionalInfo;
+
+    if (!p.profile || p.profile.length === 0 || (p.profile.length === 1 && !p.profile[0])) {
+      p.profile = VISUAL_PLACEHOLDERS.personal.profile;
+    }
+  }
+
+  if (stateForRender.contact) {
+    stateForRender.contact.forEach(c => {
+      if (!c.text || !c.text.trim()) {
+        c.text = VISUAL_PLACEHOLDERS.contact[c.type] || '';
+        if (c.type === 'email') c.href = `mailto:${c.text}`;
+        if (c.type === 'web') c.href = `https://${c.text}`;
+      }
+    });
+  }
+
+  if (stateForRender.experience) {
+    stateForRender.experience.forEach(exp => {
+      exp.title = (exp.title || '').trim() || VISUAL_PLACEHOLDERS.experience.title;
+      exp.company = (exp.company || '').trim() || VISUAL_PLACEHOLDERS.experience.company;
+      exp.period = (exp.period || '').trim() || VISUAL_PLACEHOLDERS.experience.period;
+      if (!exp.bullets || exp.bullets.length === 0 || (exp.bullets.length === 1 && !exp.bullets[0])) {
+        exp.bullets = VISUAL_PLACEHOLDERS.experience.bullets;
+      }
+      if (exp.button) {
+        exp.button.text = (exp.button.text || '').trim() || VISUAL_PLACEHOLDERS.experience.buttonText;
+      }
+    });
+  }
+
+  if (stateForRender.education) {
+    stateForRender.education.forEach(edu => {
+      edu.title = (edu.title || '').trim() || VISUAL_PLACEHOLDERS.education.title;
+      edu.institution = (edu.institution || '').trim() || VISUAL_PLACEHOLDERS.education.institution;
+      edu.period = (edu.period || '').trim() || VISUAL_PLACEHOLDERS.education.period;
+      edu.description = (edu.description || '').trim() || VISUAL_PLACEHOLDERS.education.description;
+      if (edu.button) {
+        edu.button.text = (edu.button.text || '').trim() || VISUAL_PLACEHOLDERS.education.buttonText;
+      }
+    });
+  }
+
+  if (stateForRender.skills) {
+    stateForRender.skills = stateForRender.skills.map((s, idx) => {
+      const name = (s.name || '').trim() || `${VISUAL_PLACEHOLDERS.skills} ${idx + 1}`;
+      return {
+        ...s,
+        name: resolveDefaultValue(name, 'name', 'skills')
+      };
+    });
+  }
+  if (stateForRender.techSkills) {
+    stateForRender.techSkills = stateForRender.techSkills.map((ts, idx) => {
+      const name = (ts.name || '').trim() || `${VISUAL_PLACEHOLDERS.techSkills} ${idx + 1}`;
+      return {
+        ...ts,
+        name: resolveDefaultValue(name, 'name', 'techSkills')
+      };
+    });
+  }
+  if (stateForRender.languages) {
+    stateForRender.languages = stateForRender.languages.map((l, idx) => {
+      const name = (l.name || '').trim() || `${VISUAL_PLACEHOLDERS.languages.name} ${idx + 1}`;
+      return {
+        ...l,
+        name: resolveDefaultValue(name, 'name', 'languages')
+      };
+    });
+  }
+  if (stateForRender.personality) {
+    stateForRender.personality = stateForRender.personality.map((p, idx) => {
+      const name = (p.name || '').trim() || `${VISUAL_PLACEHOLDERS.personality} ${idx + 1}`;
+      return {
+        ...p,
+        name: resolveDefaultValue(name, 'name', 'personality')
+      };
+    });
+  }
+  if (stateForRender.experience) {
+    stateForRender.experience = stateForRender.experience.map(exp => ({
+      ...exp,
+      title: resolveDefaultValue(exp.title, 'title', 'experience')
+    }));
+  }
+  if (stateForRender.education) {
+    stateForRender.education.forEach(edu => {
+      edu.title = resolveDefaultValue(edu.title, 'title', 'education');
+    });
+  }
+
+  return stateForRender;
+}
+
 export async function updatePreview() {
   const previewContainer = document.querySelector('.cv-preview-container');
   if (!previewContainer) return;
 
   const previewPanel = document.getElementById('preview-panel');
   const loader = document.getElementById('cv-loader');
+  const activeTemplate = state?.activeTemplate || 'moderno';
 
   // Solo mostrar spinner de carga si la plantilla no está pre-cargada en la memoria caché
-  const isCached = !!templateCache[state.activeTemplate];
+  const isCached = !!templateCache[activeTemplate];
 
   if (!isCached) {
     if (previewPanel) {
@@ -206,7 +362,13 @@ export async function updatePreview() {
   // Pre-escalar para evitar tirones iniciales
   scalePreview();
 
-  const template = await loadTemplate(state.activeTemplate);
+  if (!state) {
+    showPreviewError('No se pudo inicializar el estado del currículum.');
+    return;
+  }
+
+  try {
+  const template = await loadTemplate(activeTemplate);
   if (template) {
     injectTemplateCSS(template.css);
 
@@ -319,11 +481,15 @@ export async function updatePreview() {
     const html = template.render(stateForRender);
     previewContainer.innerHTML = html;
   } else {
-    previewContainer.innerHTML = `<div style="padding: 20px; color: red;">Error al cargar la plantilla.</div>`;
+    showPreviewError(
+      'No se pudo cargar la plantilla activa.',
+      `Revisa /src/templates/${activeTemplate}/index.js y su export render().`
+    );
+    return;
   }
 
   // Aplicar la tipografía seleccionada para la plantilla activa
-  const activeFont = state.fonts?.[state.activeTemplate];
+  const activeFont = state.fonts?.[activeTemplate];
   if (activeFont) {
     injectDynamicFontCSS(activeFont);
   }
@@ -332,14 +498,16 @@ export async function updatePreview() {
   scalePreview();
   checkPageOverflow();
 
-  // Ocultar spinner de carga
-  if (!isCached && previewPanel) {
-    setTimeout(() => {
-      previewPanel.classList.remove('is-loading');
-      if (loader) {
-        loader.classList.add('hidden');
-      }
-    }, 150);
+  } catch (error) {
+    console.error('Error inesperado al actualizar la vista previa:', error);
+    showPreviewError(
+      'La vista previa no pudo actualizarse.',
+      'El editor sigue disponible para corregir datos o cambiar de plantilla.'
+    );
+  } finally {
+    if (!isCached) {
+      hidePreviewLoader(true);
+    }
   }
 }
 export { templateCache };
