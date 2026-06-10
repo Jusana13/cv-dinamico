@@ -526,7 +526,12 @@ export function syncColorPickers() {
 
   const activeTemplateConfig = templatesConfig ? templatesConfig.find(t => t.id === activeTmpl) : null;
   const colorsDef = activeTemplateConfig?.colors || { primary: "Color Principal", accent: "Color de Acento" };
-  const currentColors = state.colors[activeTmpl] || {};
+  
+  if (!state.colors[activeTmpl]) {
+    const defaultColors = defaultData.colors[activeTmpl] || { primary: '#2C2D30', accent: '#C9A227' };
+    state.colors[activeTmpl] = JSON.parse(JSON.stringify(defaultColors));
+  }
+  const currentColors = state.colors[activeTmpl];
 
   container.innerHTML = '';
 

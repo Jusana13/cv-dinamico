@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="22 30 140 140" width="100%" height="100%">
+  <defs>
+    <!-- Gradiente de Oro Premium (igual al de la web) -->
+    <linearGradient id="goldGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a227" />
+      <stop offset="100%" stop-color="#ebd078" />
+    </linearGradient>
+    
+    <!-- Gradiente de fondo del documento (oscuro y traslúcido) -->
+    <linearGradient id="docBackground" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141822" />
+      <stop offset="100%" stop-color="#0b0d13" />
+    </linearGradient>
+
+    <!-- Ruta de la Flecha (Swoosh) compartida -->
+    <path id="swoosh" d="M 45 110 C 25 150 75 160 105 130 C 120 110 135 90 140 75 L 128 75 L 148 45 L 162 80 L 150 78 C 145 100 130 125 105 145 C 70 165 35 140 45 110 Z" />
+  </defs>
+
+  <!-- 1. Silueta de la hoja de papel con borde dorado -->
+  <path d="M 55 46 C 55 42.6 57.6 40 61 40 L 110 40 L 140 70 L 140 144 C 140 147.3 137.3 150 134 150 L 61 150 C 57.6 150 55 147.3 55 144 Z" fill="url(#docBackground)" stroke="#c9a227" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Esquina doblada -->
+  <path d="M 110 40 L 110 64 C 110 67.3 112.7 70 116 70 L 140 70 Z" fill="#141822" stroke="#c9a227" stroke-width="5" stroke-linejoin="round"/>
+
+  <!-- 2. Cuadrícula de bloques -->
+  <g transform="translate(60, 78)" stroke="#141822" stroke-width="1.5" stroke-linejoin="round">
+    <path d="M 0 0 L 25 0 L 25 10 A 4 4 0 1 1 25 18 L 25 28 L 16 28 A 4 4 0 1 0 8 28 L 0 28 Z" fill="#ebd078"/>
+    <path d="M 25 0 L 52 0 L 52 10 A 4 4 0 1 1 52 18 L 52 28 L 43 28 A 4 4 0 1 0 35 28 L 25 28 L 25 18 A 4 4 0 1 0 25 10 Z" fill="#c9a227"/>
+    <path d="M 52 0 L 77 0 L 77 28 L 68 28 A 4 4 0 1 0 60 28 L 52 28 L 52 18 A 4 4 0 1 0 52 10 Z" fill="#ffffff"/>
+    
+    <path d="M 0 28 L 8 28 A 4 4 0 1 1 16 28 L 25 28 L 25 38 A 4 4 0 1 1 25 46 L 25 65 L 0 65 Z" fill="#a68d73"/>
+    <path d="M 25 28 L 35 28 A 4 4 0 1 1 43 28 L 52 28 L 52 38 A 4 4 0 1 1 52 46 L 52 65 L 25 65 L 25 46 A 4 4 0 1 0 25 38 Z" fill="#475569"/>
+    <path d="M 52 28 L 60 28 A 4 4 0 1 1 68 28 L 77 28 L 77 65 L 52 65 L 52 46 A 4 4 0 1 0 52 38 Z" fill="#1e293b"/>
+  </g>
+
+  <!-- 3. Flecha completa en el frente -->
+  <use href="#swoosh" fill="none" stroke="#141822" stroke-width="8" stroke-linejoin="round"/>
+  <use href="#swoosh" fill="url(#goldGradient)"/>
+</svg>

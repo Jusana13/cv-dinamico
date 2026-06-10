@@ -3,11 +3,7 @@
     "name":  "Creativo",
     "thumbnail":  "./src/templates/creativo/thumbnail.svg",
     "defaultPhotoShape":  "circle",
-    "defaultFont":  "Plus Jakarta Sans",
-    "supportedFonts":  [
-                           "Plus Jakarta Sans",
-                           "Inter"
-                       ],
+    "defaultFont":  "Poppins",
     "features":  {
                      "buttons":  true,
                      "skillLevels":  false,

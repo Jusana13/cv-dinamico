@@ -26,8 +26,15 @@ yarn-error.log*
 # Dotnet Server
 dotnet-server/
 
-# Reference assets
+# Reference assets and backups
 cvs soon/
+cvsoon/
+cvs-soon/
+cv-soon/
 
 # CLI Agents / IDE logs
 .antigravitycli/
+.agents/
+*.log
+diff_css.txt
+reporte_arquitectura_y_flujo.txt

@@ -96,7 +96,8 @@ export function injectDynamicFontCSS(fontName) {
     styleTag.id = 'dynamic-cv-font';
     document.head.appendChild(styleTag);
   }
-  styleTag.textContent = `.cv-page, .cv-page * { font-family: '${fontName}', sans-serif !important; }`;
+  const fallback = (fontName === 'Lora' || fontName === 'Playfair Display') ? 'serif' : 'sans-serif';
+  styleTag.textContent = `.cv-page, .cv-page * { font-family: '${fontName}', ${fallback} !important; }`;
   lastInjectedFont = fontName;
 }
 

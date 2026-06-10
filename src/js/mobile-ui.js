@@ -1,5 +1,5 @@
 /* ==========================================================================
-   FlowCV - Creador de CV Dinámico (Lógica de Interfaz Móvil y Responsiva)
+   Creador de CV Dinámico (Lógica de Interfaz Móvil y Responsiva)
    Diseñado para aislar el comportamiento móvil sin contaminar el flujo de app.js
    ========================================================================== */
 

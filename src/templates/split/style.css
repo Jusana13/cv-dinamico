@@ -20,7 +20,7 @@
   .cv-header {
     background-color: var(--primary, #1a1b1e);
     color: #ffffff;
-    height: 281px;
+    height: 260px;
     display: flex;
     padding: 42px;
     box-sizing: border-box;

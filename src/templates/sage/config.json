@@ -3,7 +3,7 @@
     "name":  "Sage",
     "thumbnail":  "./src/templates/sage/thumbnail.svg",
     "defaultPhotoShape":  "circle",
-    "defaultFont":  "Montserrat",
+    "defaultFont":  "Outfit",
     "features":  {
                      "buttons":  true,
                      "skillLevels":  true,

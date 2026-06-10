@@ -4,22 +4,22 @@
    Desarrollado completamente con CSS Nesting nativo
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
 
 /* Variables del Dashboard */
 :root {
-  --db-bg: #0c0d0f;
-  --db-card-bg: rgba(22, 25, 30, 0.7);
-  --db-border: rgba(255, 255, 255, 0.08);
-  --db-border-hover: rgba(255, 255, 255, 0.15);
-  --db-accent: #c9a227;
-  --db-accent-glow: rgba(201, 162, 39, 0.15);
-  --db-text: #e2e8f0;
-  --db-text-muted: #94a3b8;
-  --db-input-bg: #111317;
-  --db-btn-danger: #ef4444;
-  --db-btn-danger-hover: #dc2626;
-  --db-btn-success: #10b981;
+  --db-bg: #07080a;
+  --db-card-bg: rgba(15, 18, 25, 0.45);
+  --db-border: rgba(255, 255, 255, 0.05);
+  --db-border-hover: rgba(255, 255, 255, 0.1);
+  --db-accent: #d4af37; /* Metallic premium gold */
+  --db-accent-glow: rgba(212, 175, 55, 0.12);
+  --db-text: #f8fafc; /* Slate 50 */
+  --db-text-muted: #94a3b8; /* Slate 400 */
+  --db-input-bg: rgba(10, 12, 16, 0.6);
+  --db-btn-danger: #f87171;
+  --db-btn-danger-hover: #ef4444;
+  --db-btn-success: #34d399;
 }
 
 /* Reset y Base del Dashboard */
@@ -30,8 +30,11 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   background-color: var(--db-bg);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.03) 0px, transparent 40%),
+    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.04) 0px, transparent 40%);
   color: var(--db-text);
   overflow: hidden;
   height: 100vh;
@@ -48,11 +51,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 4px;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--db-accent);
   }
 }
 
@@ -67,10 +70,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background: rgba(14, 16, 20, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--db-border);
+    padding: 14px 28px;
+    background: rgba(8, 10, 15, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     z-index: 10;
 
     .brand {
@@ -96,14 +101,32 @@ body {
       }
 
       h1 {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 700;
-        letter-spacing: 0.5px;
-        background: linear-gradient(120deg, #ffffff, var(--db-text-muted));
+        letter-spacing: 0.6px;
+        background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         user-select: none;
         -webkit-user-select: none;
+      }
+
+      .brand-tagline {
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--db-text-muted, #94a3b8);
+        -webkit-text-fill-color: var(--db-text-muted, #94a3b8);
+        background: none;
+        -webkit-background-clip: unset;
+        letter-spacing: 0.3px;
+        margin-left: 6px;
+        opacity: 0.75;
+        vertical-align: middle;
+        display: none;
+
+        @media (min-width: 768px) {
+          display: inline-block;
+        }
       }
     }
 
@@ -447,43 +470,46 @@ body {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: var(--db-card-bg);
-        border: 1px solid var(--db-border);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
         color: var(--db-text);
         padding: 8px 16px;
         font-size: 13px;
         font-weight: 500;
-        border-radius: 6px;
+        border-radius: 8px;
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
         &:hover {
-          background: rgba(255, 255, 255, 0.05);
-          border-color: var(--db-border-hover);
+          background: rgba(255, 255, 255, 0.07);
+          border-color: rgba(255, 255, 255, 0.15);
+          transform: translateY(-1px);
         }
 
         &.btn-primary {
-          background: var(--db-accent);
-          color: #000000;
-          border-color: var(--db-accent);
+          background: linear-gradient(135deg, var(--db-accent) 0%, #b8860b 100%);
+          color: #0c0d10;
+          border: none;
           font-weight: 600;
+          box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
 
           &:hover {
-            background: #ebd078;
-            border-color: #ebd078;
-            box-shadow: 0 0 12px var(--db-accent-glow);
+            background: linear-gradient(135deg, #f3d060 0%, var(--db-accent) 100%);
+            box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+            transform: translateY(-1px);
           }
         }
       }
 
       #btn-reset {
-        border-color: rgba(239, 68, 68, 0.4);
+        border-color: rgba(239, 68, 68, 0.3);
         color: rgba(255, 255, 255, 0.85);
 
         &:hover {
-          background: rgba(239, 68, 68, 0.1);
-          border-color: #ef4444;
-          color: #ef4444;
+          background: rgba(239, 68, 68, 0.08);
+          border-color: #f87171;
+          color: #f87171;
+          transform: translateY(-1px);
         }
       }
     }
@@ -498,8 +524,10 @@ body {
 
     /* Panel Izquierdo: Formularios de Entrada */
     aside.editor-panel {
-      background: rgba(14, 16, 20, 0.5);
-      border-right: 1px solid var(--db-border);
+      background: rgba(10, 12, 17, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-right: 1px solid rgba(255, 255, 255, 0.04);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -544,32 +572,33 @@ body {
       nav.editor-tabs {
         display: flex;
         overflow-x: auto;
-        border-bottom: 1px solid var(--db-border);
-        background: rgba(10, 11, 14, 0.4);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        background: rgba(8, 10, 15, 0.25);
         flex-shrink: 0;
 
         .tab-btn {
           background: transparent;
           border: none;
           color: var(--db-text-muted);
-          padding: 12px 16px;
-          font-size: 12px;
+          padding: 12px 18px;
+          font-size: 12.5px;
           font-weight: 500;
           cursor: pointer;
           white-space: nowrap;
-          transition: all 0.2s;
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
           border-bottom: 2px solid transparent;
 
           &:hover {
             color: white;
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.03);
           }
 
           &.active {
             color: var(--db-accent);
             border-bottom-color: var(--db-accent);
-            background: rgba(201, 162, 39, 0.05);
+            background: rgba(212, 175, 55, 0.06);
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
           }
         }
       }
@@ -585,23 +614,33 @@ body {
 
         /* Estilo Semántico de fieldset y legend en Formularios */
         fieldset {
-          border: 1px solid var(--db-border);
-          border-radius: 8px;
-          padding: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          background: rgba(255, 255, 255, 0.012);
+          border-radius: 12px;
+          padding: 20px;
           margin: 0;
           min-width: 0;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 18px;
+          box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &:focus-within {
+            border-color: rgba(212, 175, 55, 0.25);
+            background: rgba(255, 255, 255, 0.025);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+          }
         }
 
         legend {
           font-size: 11px;
           font-weight: 700;
           color: var(--db-accent);
-          padding: 0 8px;
+          padding: 0 10px;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.8px;
+          text-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
 
           &[contenteditable="true"] {
             cursor: text;
@@ -630,7 +669,7 @@ body {
             }
 
             &:hover {
-              border-color: rgba(201, 162, 39, 0.4);
+              border-color: rgba(212, 175, 55, 0.4);
               background-color: rgba(255, 255, 255, 0.02);
 
               &::after {
@@ -679,11 +718,12 @@ body {
           gap: 6px;
 
           label {
-            font-size: 11.5px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             color: var(--db-text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            margin-left: 2px;
           }
 
           input[type="text"],
@@ -694,20 +734,21 @@ body {
             background-color: var(--db-input-bg);
             border: 1px solid var(--db-border);
             color: white;
-            padding: 10px 12px;
+            padding: 10px 14px;
             font-size: 13.5px;
-            border-radius: 6px;
+            border-radius: 8px;
             outline: none;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: inherit;
 
             &:focus {
               border-color: var(--db-accent);
-              box-shadow: 0 0 0 2px var(--db-accent-glow);
+              background-color: rgba(10, 12, 16, 0.85);
+              box-shadow: 0 0 0 3px var(--db-accent-glow);
             }
 
             &::placeholder {
-              color: rgba(255, 255, 255, 0.15);
+              color: rgba(255, 255, 255, 0.18);
             }
           }
 
@@ -1358,7 +1399,8 @@ body {
 
       /* Panel Derecho: Previsualizador del CV A4 a escala */
       main#preview-panel {
-        background-color: #17181c;
+        background-color: #0c0d10;
+        background-image: radial-gradient(circle at center, #161a24 0%, #0c0d10 100%);
         overflow: auto;
         display: flex;
         justify-content: center;
@@ -1374,7 +1416,12 @@ body {
           margin: auto;
           /* Centrado del contenedor en el flujo de caja flexible (Flexbox) */
           flex-shrink: 0;
-          box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.05);
+          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &:hover {
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(212, 175, 55, 0.15);
+          }
         }
 
         /* Contenedor absoluto que aloja el canvas A4 y se escala en su esquina superior izquierda */

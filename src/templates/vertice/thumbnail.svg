@@ -1,0 +1,42 @@
+<svg viewBox="0 0 110 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="35" height="155" fill="var(--preview-accent, #f5f6f8)" />
+  <line x1="35" y1="0" x2="35" y2="155" stroke="#eaeaea" stroke-width="0.5" />
+  
+  <!-- Slanted Header -->
+  <path d="M35 0 H110 V32 H45 L35 0 Z" fill="var(--preview-primary, #fde484)" />
+
+  <!-- Avatar -->
+  <circle cx="17.5" cy="22" r="9" fill="#e0e0e0" stroke="#ffffff" stroke-width="1" />
+
+  <!-- Contact -->
+  <circle cx="8" cy="42" r="1.5" fill="var(--preview-primary, #fde484)" />
+  <rect x="13" y="41" width="16" height="2" rx="0.5" fill="#a0a0a0" />
+  
+  <circle cx="8" cy="48" r="1.5" fill="var(--preview-primary, #fde484)" />
+  <rect x="13" y="47" width="16" height="2" rx="0.5" fill="#a0a0a0" />
+
+  <!-- Education in Sidebar -->
+  <rect x="5" y="58" width="25" height="2" rx="0.5" fill="#777777" />
+  <rect x="5" y="64" width="22" height="1.5" rx="0.5" fill="#a0a0a0" />
+  <rect x="5" y="68" width="15" height="1" rx="0.5" fill="#c0c0c0" />
+
+  <!-- Skills Circles in Sidebar -->
+  <circle cx="11" cy="84" r="5" stroke="var(--preview-primary, #fde484)" stroke-width="1.5" fill="none" />
+  <circle cx="24" cy="84" r="5" stroke="var(--preview-primary, #fde484)" stroke-width="1.5" fill="none" />
+  <circle cx="11" cy="98" r="5" stroke="#333333" stroke-width="1.5" fill="none" />
+  <circle cx="24" cy="98" r="5" stroke="#333333" stroke-width="1.5" fill="none" />
+
+  <!-- Main Column Title -->
+  <rect x="42" y="45" width="25" height="2.5" rx="0.5" fill="#333333" />
+  <rect x="42" y="52" width="60" height="1.5" rx="0.5" fill="#666666" />
+  <rect x="42" y="56" width="55" height="1.5" rx="0.5" fill="#666666" />
+
+  <!-- Experience -->
+  <rect x="42" y="70" width="40" height="2.5" rx="0.5" fill="#333333" />
+  <rect x="42" y="77" width="50" height="1.5" rx="0.5" fill="#666666" />
+  <rect x="42" y="81" width="58" height="1" rx="0.5" fill="#a0a0a0" />
+  
+  <rect x="42" y="90" width="50" height="1.5" rx="0.5" fill="#666666" />
+  <rect x="42" y="94" width="58" height="1" rx="0.5" fill="#a0a0a0" />
+</svg>

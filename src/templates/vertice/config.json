@@ -1,0 +1,35 @@
+{
+    "id": "vertice",
+    "name": "Vértice",
+    "thumbnail": "./src/templates/vertice/thumbnail.svg",
+    "defaultPhotoShape": "circle",
+    "defaultFont": "Inter",
+    "features": {
+        "buttons": true,
+        "educationButtons": true,
+        "experienceButtons": true,
+        "skillLevels": true,
+        "skillPercentage": true,
+        "languageLevels": false,
+        "personality": false,
+        "personalityLevels": false,
+        "techSkills": false
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-contact",
+        "sec-skills",
+        "sec-experience",
+        "sec-education",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Detalle / Slant (Amarillo Vértice)",
+        "accent": "Fondo del Lateral"
+    },
+    "defaultDataOverrides": {
+        "experience": 2,
+        "education": 2,
+        "skills": 6
+    }
+}

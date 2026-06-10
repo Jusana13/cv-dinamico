@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+.cv-page.vertice {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text-main, #333333);
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  --color-primary: var(--primary, #fde484);
+  /* El amarillo del encabezado / círculos */
+  --color-sidebar-bg: var(--accent, #f5f6f8);
+  /* Fondo del lateral */
+  --color-text-main: #333333;
+  --color-text-light: #777777;
+  --color-border: #222222;
+
+  /* ENCABEZADO CON CORTE DIAGONAL */
+  .cv-header-slant {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 220px;
+    background-color: var(--color-primary);
+    /* Slant starts from x=23% at the top edge, and goes to x=32% at the bottom edge */
+    clip-path: polygon(23% 0, 100% 0, 100% 100%, 32% 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 50px;
+    padding-left: 35%;
+    padding-top: 30px;
+    text-align: right;
+    z-index: 2;
+  }
+
+  .cv-name {
+    font-family: 'Alex Brush', cursive;
+    font-size: 54px;
+    font-weight: normal;
+    color: #222222;
+    margin-bottom: 20px;
+    line-height: 1.1;
+  }
+
+  .cv-job-title {
+    font-size: 13px;
+    letter-spacing: 5px;
+    font-weight: 700;
+    color: #333333;
+  }
+
+  /* COLUMNA IZQUIERDA (SIDEBAR) */
+  .cv-sidebar {
+    width: 32%;
+    background-color: var(--color-sidebar-bg);
+    padding: 40px 30px;
+    border-right: 1px solid #eaeaea;
+    /* Sutil separación */
+    z-index: 1;
+  }
+
+  .cv-photo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-right: 20px;
+    position: relative;
+    z-index: 3;
+    /* Render above the yellow header slant */
+  }
+
+  .cv-photo {
+    width: 150px;
+    height: 150px;
+    background-color: #e0e0e0;
+    background-size: cover;
+    background-position: center;
+    border: 5px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    &.shape-circle {
+      border-radius: 50%;
+    }
+
+    &.shape-rounded {
+      border-radius: 16px;
+    }
+
+    &.shape-square {
+      border-radius: 0;
+    }
+  }
+
+  /* TÍTULOS DE SECCIÓN GENERALES */
+
+  .cv-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid var(--color-border);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    color: #222222;
+  }
+
+  /* LISTA DE CONTACTOS */
+  .cv-contact-list {
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      span {
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        color: #333333;
+        letter-spacing: 0.2px;
+        word-break: break-word;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .cv-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      color: #333333;
+      fill: #333333;
+    }
+  }
+
+  /* ITEMS GENÉRICOS (Educación / Experiencia) */
+
+  .cv-item-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #222222;
+    margin-bottom: 4px;
+  }
+
+  .cv-item-subtitle {
+    font-size: 12px;
+    font-style: italic;
+    color: #555555;
+    margin-bottom: 3px;
+  }
+
+  .cv-item-date {
+    font-size: 11px;
+    color: #777777;
+  }
+
+  /* GRÁFICOS CIRCULARES (Habilidades) */
+  .cv-skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 10px;
+    justify-items: center;
+  }
+
+  .cv-skill-ring {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  }
+
+  .cv-skill-inner {
+    width: 73px;
+    height: 73px;
+    background-color: #ffffff;
+    /* White center for contrast */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #333333;
+    padding: 5px;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  /* COLUMNA DERECHA (MAIN) */
+  .cv-main {
+    width: 68%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* CONTENIDO PRINCIPAL */
+  .cv-content {
+    padding: 240px 50px 40px 50px;
+    /* Top padding to clear absolute header */
+  }
+
+  .cv-text {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #444444;
+    text-align: justify;
+    margin-bottom: 10px;
+  }
+
+  .cv-job {
+
+    .cv-item-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #222222;
+      margin-bottom: 4px;
+    }
+
+    .cv-item-subtitle {
+      font-size: 12px;
+      font-style: italic;
+      color: #555555;
+      margin-bottom: 3px;
+    }
+
+    .cv-item-date {
+      margin-bottom: 12px;
+    }
+  }
+
+  .cv-bullet-list {
+    margin-top: 12px;
+    padding-left: 20px;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #444444;
+
+    li:last-child {
+      margin-bottom: 10px;
+    }
+  }
+
+  .cert-btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: #333333;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-primary) 85%, black);
+    }
+  }
+}

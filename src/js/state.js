@@ -12,7 +12,18 @@
  * Familias de fuentes de Google Fonts soportadas globalmente por la aplicación.
  * @type {string[]}
  */
-export const SUPPORTED_FONTS = ['Inter', 'Montserrat', 'Open Sans', 'Plus Jakarta Sans'];
+export const SUPPORTED_FONTS = [
+  'Inter',
+  'Montserrat',
+  'Open Sans',
+  'Plus Jakarta Sans',
+  'Poppins',
+  'Roboto',
+  'Lora',
+  'Playfair Display',
+  'Outfit',
+  'DM Sans'
+];
 
 /**
  * Placeholders visuales utilizados para rellenar campos vacíos en el previsualizador del CV.
@@ -144,19 +155,21 @@ export const defaultData = {
     sage: { primary: '#c5ded6', accent: '#354240' },
     sobrio: { primary: '#EAEAE6', accent: '#222222' },
     estrella: { primary: '#4D4D4B', accent: '#F8F7F4', textColor: '#5A5A58' },
-    split: { primary: '#1a1b1e', accent: '#e5dfd3', bgLight: '#ffffff' }
+    split: { primary: '#1a1b1e', accent: '#e5dfd3', bgLight: '#ffffff' },
+    vertice: { primary: '#fde484', accent: '#f5f6f8' }
   },
   fonts: {
     moderno: 'Plus Jakarta Sans',
     profesional: 'Open Sans',
     minimalista: 'Inter',
-    creativo: 'Plus Jakarta Sans',
-    rosa: 'Inter',
+    creativo: 'Poppins',
+    rosa: 'Poppins',
     asimetrico: 'Montserrat',
-    sage: 'Montserrat',
-    sobrio: 'Montserrat',
+    sage: 'Outfit',
+    sobrio: 'Lora',
     estrella: 'Montserrat',
-    split: 'Montserrat'
+    split: 'Montserrat',
+    vertice: 'Inter'
   }
 };
 
@@ -216,9 +229,11 @@ export function loadState() {
     } catch (e) {
       console.error("Error al cargar localStorage, usando datos por defecto", e);
       state = JSON.parse(JSON.stringify(defaultData));
+      migrateState(state);
     }
   } else {
     state = JSON.parse(JSON.stringify(defaultData));
+    migrateState(state);
     state.personal.photoShape = getDefaultPhotoShape(state.activeTemplate);
   }
   applyTemplateDefaultOverrides(state.activeTemplate, state);
@@ -262,8 +277,7 @@ export async function loadTemplate(templateId) {
     return templateCache[templateId];
   }
   try {
-    const modulePath = `/src/templates/${templateId}/index.js`;
-    const module = await import(modulePath);
+    const module = await import(`../templates/${templateId}/index.js`);
 
     const cssResponse = await fetch(`./src/templates/${templateId}/style.css`);
     const cssText = await cssResponse.text();
@@ -356,6 +370,18 @@ export function migrateState(stateObj) {
         edu.institution = edu.company;
         delete edu.company;
       }
+      if (!edu.button) {
+        edu.button = { text: 'Ver Certificado', url: '' };
+      }
+    });
+  }
+
+  // Asegurar botón en experiencia laboral
+  if (stateObj.experience) {
+    stateObj.experience.forEach(exp => {
+      if (!exp.button) {
+        exp.button = { text: 'Ver Proyecto', url: '' };
+      }
     });
   }
 
@@ -375,6 +401,13 @@ export function migrateState(stateObj) {
   // Asegurar la existencia e integridad de los colores
   if (!stateObj.colors || typeof stateObj.colors !== 'object') {
     stateObj.colors = JSON.parse(JSON.stringify(defaultData.colors));
+  } else {
+    // Asegurar que cada plantilla tenga sus colores inicializados en el estado
+    Object.keys(defaultData.colors).forEach(tmplId => {
+      if (!stateObj.colors[tmplId]) {
+        stateObj.colors[tmplId] = JSON.parse(JSON.stringify(defaultData.colors[tmplId]));
+      }
+    });
   }
 }
 

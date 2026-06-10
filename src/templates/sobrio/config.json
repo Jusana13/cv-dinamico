@@ -3,7 +3,7 @@
     "name":  "Sobrio",
     "thumbnail":  "./src/templates/sobrio/thumbnail.svg",
     "defaultPhotoShape":  "circle",
-    "defaultFont":  "Montserrat",
+    "defaultFont":  "Lora",
     "features":  {
                      "buttons":  false,
                      "skillLevels":  false,

@@ -3,7 +3,7 @@
     "name":  "Rosado",
     "thumbnail":  "./src/templates/rosa/thumbnail.svg",
     "defaultPhotoShape":  "circle",
-    "defaultFont":  "Inter",
+    "defaultFont":  "Poppins",
     "features":  {
                      "buttons":  true,
                      "skillLevels":  true,
