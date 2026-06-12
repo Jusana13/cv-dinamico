@@ -10,17 +10,19 @@
         "experienceButtons": true,
         "skillLevels": true,
         "skillPercentage": true,
-        "languageLevels": false,
+        "languageLevels": true,
         "personality": false,
         "personalityLevels": false,
         "techSkills": false
     },
     "tabOrder": [
         "sec-personal",
+        "sec-profile",
         "sec-contact",
         "sec-skills",
-        "sec-experience",
+        "sec-languages",
         "sec-education",
+        "sec-experience",
         "sec-design"
     ],
     "colors": {
@@ -31,5 +33,9 @@
         "experience": 2,
         "education": 2,
         "skills": 6
+    },
+    "resourceLayouts": {
+        "skills": "progress-circular-middle",
+        "languages": "progress-circular-middle"
     }
 }

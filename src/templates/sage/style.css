@@ -66,7 +66,7 @@
         transform: translate(-50%, -50%);
         width: 150px;
         height: 150px;
-        background-color: var(--sage-bg);
+        background-color: #ffffff;
         border: 4px solid var(--sage-line);
         z-index: 10;
         overflow: hidden;
@@ -371,6 +371,7 @@
         letter-spacing: 1px;
         color: var(--sage-ink);
         margin-bottom: 4px;
+        text-transform: uppercase;
     }
 
     .progress-bg {

@@ -5,7 +5,8 @@
  * barra lateral izquierda y sección de contenido principal a la derecha.
  */
 
-import { escapeHTML, silhouetteSVG, CONTACT_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Creativo".
@@ -19,31 +20,13 @@ export function render(data) {
   const fullName = `${data.personal.name || ''} ${data.personal.lastName || ''}`.toUpperCase();
   
   // Barra lateral: "Habilidades Técnicas" (desde data.techSkills)
-  const techSkillsHTML = (data.techSkills || [])
-    .map(ts => `
-      <div class="bullet-item">
-        <span class="list-bullet"></span>
-        <span class="bullet-text">${escapeHTML(ts.name)}</span>
-      </div>`)
-    .join('');
+  const techSkillsHTML = renderResource(data.techSkills, 'techSkills', data.resourceLayouts?.techSkills, colors);
 
   // Barra lateral: "Competencias" (desde data.skills)
-  const skillsHTML = (data.skills || [])
-    .map(s => `
-      <div class="bullet-item">
-        <span class="list-bullet"></span>
-        <span class="bullet-text">${escapeHTML(s.name)}</span>
-      </div>`)
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
   // Barra lateral: "Idiomas"
-  const languagesHTML = (data.languages || [])
-    .map(lang => `
-      <div class="bullet-item">
-        <span class="list-bullet"></span>
-        <span class="bullet-text"><strong>${escapeHTML(lang.name)}:</strong> ${escapeHTML(lang.level)}</span>
-      </div>`)
-    .join('');
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
 
   // Lista de información de contacto
   const contactHTML = (data.contact || [])

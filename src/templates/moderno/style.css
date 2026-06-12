@@ -89,7 +89,7 @@
     border: 3px solid #ffffff;
     border-radius: 50%;
     overflow: hidden;
-    background: var(--bg-light, #F3EFE6);
+    background: #ffffff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 
     img {

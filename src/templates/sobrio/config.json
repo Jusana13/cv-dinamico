@@ -1,35 +1,41 @@
 {
-    "id":  "sobrio",
-    "name":  "Sobrio",
-    "thumbnail":  "./src/templates/sobrio/thumbnail.svg",
-    "defaultPhotoShape":  "circle",
-    "defaultFont":  "Lora",
-    "features":  {
-                     "buttons":  false,
-                     "skillLevels":  false,
-                     "languageLevels":  false,
-                     "personality":  true,
-                     "personalityLevels":  false,
-                     "techSkills":  false,
-                     "photoPlaceholder":  false,
-                     "allowClearPhoto":  true
-                 },
-    "tabOrder":  [
-                     "sec-personal",
-                     "sec-contact",
-                     "sec-education",
-                     "sec-experience",
-                     "sec-skills",
-                     "sec-personality",
-                     "sec-interests",
-                     "sec-languages",
-                     "sec-design"
-                 ],
-    "colors":  {
-                   "primary":  "Fondo Principal",
-                   "accent":  "Color de Texto"
-               },
-    "defaultDataOverrides":  {
-                                 "education":  2
-                             }
+    "id": "sobrio",
+    "name": "Sobrio",
+    "thumbnail": "./src/templates/sobrio/thumbnail.svg",
+    "defaultPhotoShape": "circle",
+    "defaultFont": "Lora",
+    "features": {
+        "buttons": false,
+        "skillLevels": false,
+        "languageLevels": false,
+        "personality": true,
+        "personalityLevels": false,
+        "techSkills": false,
+        "photoPlaceholder": false,
+        "allowClearPhoto": true
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-profile",
+        "sec-contact",
+        "sec-education",
+        "sec-experience",
+        "sec-skills",
+        "sec-personality",
+        "sec-interests",
+        "sec-languages",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Fondo Principal",
+        "accent": "Color de Texto"
+    },
+    "defaultDataOverrides": {
+        "education": 2
+    },
+    "resourceLayouts": {
+        "skills": "bullets-list-li",
+        "languages": "bullets-list-li",
+        "personality": "bullets-list-li"
+    }
 }

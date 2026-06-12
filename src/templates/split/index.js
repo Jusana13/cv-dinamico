@@ -5,7 +5,8 @@
  * y habilidades, y elementos flotantes a la derecha para foto y educación.
  */
 
-import { renderStars, escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Split".
@@ -128,37 +129,10 @@ export function render(data) {
     .join('');
 
   // Habilidades (renderizadas como barra de progreso horizontal)
-  const skillsHTML = (data.skills || [])
-    .map(s => {
-      const percent = s.percentage !== undefined ? s.percentage : (s.level ? s.level * 20 : 60);
-      return `
-        <div class="skill-block">
-          <div class="skill-info">
-            <span class="skill-name">${escapeHTML(s.name)}</span>
-          </div>
-          <div class="progress-bg">
-            <div class="progress-fill" style="width: ${percent}%;"></div>
-          </div>
-        </div>`;
-    })
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
   // Idiomas (renderizados como barra de progreso horizontal)
-  const languagesHTML = (data.languages || [])
-    .map(lang => {
-      const percent = lang.percentage !== undefined ? lang.percentage : (lang.level ? 80 : 60);
-      const levelText = lang.level ? ` <span class="lang-level">(${escapeHTML(lang.level)})</span>` : '';
-      return `
-        <div class="skill-block">
-          <div class="skill-info">
-            <span class="skill-name">${escapeHTML(lang.name)}${levelText}</span>
-          </div>
-          <div class="progress-bg">
-            <div class="progress-fill" style="width: ${percent}%;"></div>
-          </div>
-        </div>`;
-    })
-    .join('');
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
 
   // Intereses
   const interestsHTML = (data.interests || [])

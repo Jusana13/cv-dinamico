@@ -7,7 +7,8 @@
  * seguida de un bloque inferior a tres columnas para personalidad, intereses e idiomas.
  */
 
-import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Sobrio".
@@ -88,14 +89,10 @@ export function render(data) {
     })
     .join('');
 
-  const skillsHTML = (data.skills || [])
-    .map(s => `<li>${escapeHTML(s.name)}</li>`)
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
   // Parte inferior: Personalidad e intereses lado a lado
-  const personalityHTML = (data.personality || [])
-    .map(p => `<li>${escapeHTML(p.name)}</li>`)
-    .join('');
+  const personalityHTML = renderResource(data.personality, 'personality', data.resourceLayouts?.personality, colors);
 
   const interestsHTML = (data.interests || [])
     .map(key => {
@@ -106,9 +103,7 @@ export function render(data) {
     .join('');
 
   // Parte inferior derecha: Idiomas
-  const languagesHTML = (data.languages || [])
-    .map(lang => `<li>${escapeHTML(lang.name)} ${lang.level ? `(${escapeHTML(lang.level)})` : ''}</li>`)
-    .join('');
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
 
   return `
     <article class="cv-page sobrio" style="--bg-primary: ${colors.primary}; --accent-color: ${colors.accent};">

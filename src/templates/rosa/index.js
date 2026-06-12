@@ -7,25 +7,7 @@
  * e idiomas alineados verticalmente.
  */
 
-import { escapeHTML, silhouetteSVG, CONTACT_ICONS } from '../helpers.js';
-
-/**
- * Renderiza los puntos indicadores de nivel (1 a 5).
- * @param {number} level - Nivel de la habilidad o rasgo.
- * @returns {string} Fragmento HTML con los puntos rellenos e inacabados.
- */
-function renderDots(level) {
-  const max = 5;
-  let dots = '';
-  for (let i = 1; i <= max; i++) {
-    if (i <= level) {
-      dots += '<span class="dot filled">●</span>';
-    } else {
-      dots += '<span class="dot empty">●</span>';
-    }
-  }
-  return `<span class="dots-container">${dots}</span>`;
-}
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, renderResource } from '../helpers.js';
 
 /**
  * Genera el HTML para la plantilla de currículum "Rosa".
@@ -33,7 +15,7 @@ function renderDots(level) {
  * @returns {string} Fragmento HTML listo para renderizar.
  */
 export function render(data) {
-  const colors = data.colors?.rosa || { primary: '#d63a3a', accent: '#ff8a80', bgLight: '#ff8a80' };
+  const colors = data.colors?.rosa || { primary: '#fbe2e5', accent: '#f59e0b', bgLight: '#fbe2e5' };
   
   // Formato del nombre: nombre de pila y apellido en mayúsculas
   const firstName = data.personal.name || '';
@@ -93,22 +75,10 @@ export function render(data) {
     .join('');
 
   // Habilidades
-  const skillsHTML = (data.skills || [])
-    .map(s => `
-      <div class="skill-row">
-        <span class="skill-name">${escapeHTML(s.name)}</span>
-        ${renderDots(s.level)}
-      </div>`)
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
   // Rasgos de personalidad
-  const personalityHTML = (data.personality || [])
-    .map(p => `
-      <div class="skill-row">
-        <span class="skill-name">${escapeHTML(p.name)}</span>
-        ${renderDots(p.level)}
-      </div>`)
-    .join('');
+  const personalityHTML = renderResource(data.personality, 'personality', data.resourceLayouts?.personality, colors);
 
   // Lista de contacto en formato de Dirección, Móvil y Email
   const addressItem = data.contact.find(c => c.type === 'location')?.text || 'Ciudad, País';
@@ -116,12 +86,7 @@ export function render(data) {
   const emailItem = data.contact.find(c => c.type === 'email')?.text || 'correo@ejemplo.com';
 
   // Idiomas en la columna derecha
-  const languagesHTML = (data.languages || [])
-    .map(lang => `
-      <div class="lang-row">
-        <strong>${escapeHTML(lang.name)}:</strong> ${escapeHTML(lang.level)}
-      </div>`)
-    .join('');
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
 
   const additionalInfoText = data.personal.additionalInfo || 'Disponible para incorporación inmediata y flexibilidad horaria en proyectos dinámicos.';
 

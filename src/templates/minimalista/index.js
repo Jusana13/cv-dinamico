@@ -5,7 +5,8 @@
  * clara a dos columnas (columna principal de contenido y barra lateral de datos adicionales).
  */
 
-import { renderStars, escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Minimalista".
@@ -82,21 +83,9 @@ export function render(data) {
     })
     .join('');
 
-  const skillsHTML = (data.skills || [])
-    .map(s => `
-      <div class="skill-item">
-        <span>${escapeHTML(s.name)}</span>
-        ${renderStars(s.level)}
-      </div>`)
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
-  const languagesHTML = (data.languages || [])
-    .map(lang => `
-      <div class="lang-row">
-        <span>${escapeHTML(lang.name)}</span>
-        <span class="lang-level">${escapeHTML(lang.level)}</span>
-      </div>`)
-    .join('');
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
 
   const interestsHTML = (data.interests || [])
     .map(key => {

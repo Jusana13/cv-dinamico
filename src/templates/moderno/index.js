@@ -6,7 +6,8 @@
  * barra lateral derecha oscura para datos complementarios e idiomas en círculos de progreso.
  */
 
-import { renderStars, escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Moderno".
@@ -99,31 +100,10 @@ export function render(data) {
     .join('');
 
   // Habilidades
-  const skillsHTML = (data.skills || [])
-    .map(s => `
-      <div class="skill-item">
-        <span>${escapeHTML(s.name)}</span>
-        ${renderStars(s.level)}
-      </div>`)
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
   // Idiomas (con progreso en círculo SVG)
-  const languagesHTML = (data.languages || [])
-    .map(lang => {
-      const percent = parseInt(lang.percentage) || 50;
-      // El valor stroke-dasharray del círculo SVG es 125.6 (basado en r=20 para una transición fluida)
-      const strokeDasharray = 125.6;
-      const offset = strokeDasharray - (percent / 100) * strokeDasharray;
-      return `
-        <div class="lang-circle">
-          <svg class="circle-svg">
-            <circle class="circle-bg" cx="27.5" cy="27.5" r="20"></circle>
-            <circle class="circle-progress" cx="27.5" cy="27.5" r="20" stroke-dasharray="${strokeDasharray}" style="stroke-dashoffset: ${offset};"></circle>
-          </svg>
-          <span class="lang-name">${escapeHTML(lang.name)} (${escapeHTML(lang.level)})</span>
-        </div>`;
-    })
-    .join('');
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
 
   // Intereses y hobbies
   const interestsHTML = (data.interests || [])

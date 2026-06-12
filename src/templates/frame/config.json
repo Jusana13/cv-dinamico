@@ -1,0 +1,48 @@
+{
+    "id": "frame",
+    "name": "Frame",
+    "thumbnail": "./src/templates/frame/thumbnail.svg",
+    "defaultPhotoShape": "circle",
+    "supportedPhotoShapes": [
+        "circle",
+        "rounded",
+        "square"
+    ],
+    "defaultFont": "Montserrat",
+    "features": {
+        "buttons": true,
+        "education": true,
+        "educationButtons": true,
+        "experience": true,
+        "experienceButtons": true,
+        "skillLevels": false,
+        "skillPercentage": false,
+        "languageLevels": true,
+        "personality": true,
+        "personalityLevels": false,
+        "personalityPercentage": false,
+        "techSkills": false
+    },
+    "defaultDataOverrides": {
+        "experience": 2
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-contact",
+        "sec-languages",
+        "sec-personality",
+        "sec-profile",
+        "sec-education",
+        "sec-experience",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Bordes y Títulos (Oscuro)",
+        "accent": "Iconos y Destacados (Acento)",
+        "bgLight": "Fondo Principal (Claro)"
+    },
+    "resourceLayouts": {
+        "languages": "progress-linear-percent",
+        "personality": "bullets-list"
+    }
+}

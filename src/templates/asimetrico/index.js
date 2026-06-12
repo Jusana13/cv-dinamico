@@ -5,7 +5,7 @@
  * destacando la foto y los títulos de las secciones.
  */
 
-import { renderStars, escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS, renderResource } from '../helpers.js';
 
 /**
  * Genera el HTML para la plantilla de currículum "Asimétrico".
@@ -86,11 +86,7 @@ export function render(data) {
     <div class="block">
       <h2 class="section-title">${escapeHTML(data.sectionTitles?.skills || 'Habilidades')}</h2>
       <div class="skills-container">
-        ${(data.skills || []).map(s => `
-          <div class="skill-item">
-            <span class="skill-name">${escapeHTML(s.name)}</span>
-            ${renderStars(s.level)}
-          </div>`).join('')}
+        ${renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors)}
       </div>
     </div>` : '';
 
@@ -125,28 +121,17 @@ export function render(data) {
     <div class="block">
       <h2 class="section-title">${escapeHTML(data.sectionTitles?.languages || 'Idiomas')}</h2>
       <div class="languages-container">
-        ${(data.languages || []).map(lang => `
-          <div class="lang-item">
-            <div class="lang-header">
-              <span class="lang-name"><strong>${escapeHTML(lang.name)}</strong></span>
-              <span class="lang-level">${escapeHTML(lang.level)}</span>
-            </div>
-            <div class="lang-bar-wrap">
-              <div class="lang-bar" style="width: ${lang.percentage || 50}%;"></div>
-            </div>
-          </div>`).join('')}
+        ${renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors)}
       </div>
     </div>` : '';
 
   // Personalidad
-  const personalityHTML = (data.personality || []).length > 0 ? `
+  const personalityContent = renderResource(data.personality, 'personality', data.resourceLayouts?.personality, colors);
+  const personalityHTML = personalityContent ? `
     <div class="block">
       <h2 class="section-title">${escapeHTML(data.sectionTitles?.personality || 'Personalidad')}</h2>
       <div class="personality-container">
-        ${(data.personality || []).map(p => `
-          <div class="personality-tag">
-            <span>${escapeHTML(p.name)}</span>
-          </div>`).join('')}
+        ${personalityContent}
       </div>
     </div>` : '';
 

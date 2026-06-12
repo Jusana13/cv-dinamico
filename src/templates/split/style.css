@@ -356,7 +356,7 @@
     right: 10px;
     width: calc(45% - 10px);
     height: 356px;
-    background-color: var(--accent, #e5dfd3);
+    background-color: #ffffff;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;

@@ -137,6 +137,7 @@
 
         <nav class="editor-tabs">
           <button class="tab-btn active" data-target="sec-personal">Personal</button>
+          <button class="tab-btn" data-target="sec-profile">Perfil</button>
           <button class="tab-btn" data-target="sec-contact">Contacto</button>
           <button class="tab-btn" data-target="sec-education">Estudios</button>
           <button class="tab-btn" data-target="sec-experience">Experiencia</button>
@@ -198,8 +199,11 @@
                 </button>
               </div>
             </fieldset>
+          </section>
 
-            <fieldset class="form-fieldset" style="margin-top: 15px;">
+          <!-- SECCIÓN: Perfil Profesional -->
+          <section id="sec-profile" class="form-section">
+            <fieldset class="form-fieldset">
               <legend contenteditable="true" data-section-title="profile" title="Haz clic para renombrar esta sección">
                 Perfil Profesional</legend>
               <div id="profile-paragraphs-container" class="list-items-container">
@@ -829,6 +833,29 @@
             <option value="4">4 ●●●●</option>
             <option value="5">5 ●●●●●</option>
           </select>
+        </div>
+      </div>
+    </fieldset>
+  </template>
+
+  <!-- Plantilla: Personalidad con Porcentaje/Barra Interactiva -->
+  <template id="template-personality-percentage-card">
+    <fieldset class="repeater-card">
+      <div class="repeater-header">
+        <span class="repeater-title">Cualidad #{index}</span>
+        <button type="button" class="btn-remove" data-action="remove-personality" data-index="{index-0}"
+          title="Eliminar cualidad">
+          {trashIcon}
+        </button>
+      </div>
+      <div class="input-row personality-percentage-grid">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="pers-input" data-field="name" data-index="{index-0}" placeholder="Ej. Liderazgo">
+        </div>
+        <div class="form-group form-group-slider level-group">
+          <label class="slider-label">Nivel: <strong class="percent-label">{percentage}%</strong></label>
+          <input type="range" class="pers-input-range" data-index="{index-0}" min="0" max="100">
         </div>
       </div>
     </fieldset>

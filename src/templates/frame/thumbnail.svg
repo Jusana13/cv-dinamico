@@ -1,0 +1,70 @@
+<svg viewBox="0 0 110 155" fill="none" xmlns="http://www.w3.org/2000/svg" style="background:var(--preview-bg, #ffffff); border-radius:4px; width:100%; height:100%;">
+  <!-- Left column border-left line -->
+  <line x1="5" y1="15" x2="5" y2="135" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  
+  <!-- Left column top header U-frame border-top/right -->
+  <line x1="5" y1="15" x2="48" y2="15" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  <line x1="48" y1="15" x2="48" y2="25" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  
+  <!-- Name first & last name -->
+  <rect x="10" y="28" width="28" height="3" rx="0.5" fill="var(--preview-primary, #000000)" />
+  <rect x="10" y="34" width="22" height="4" rx="0.5" fill="var(--preview-primary, #000000)" />
+  
+  <!-- Profession -->
+  <line x1="10" y1="44" x2="10" y2="50" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  <rect x="14" y="45" width="25" height="2" rx="0.5" fill="var(--preview-accent, #666666)" />
+  
+  <!-- Sidebar borders (right and bottom) -->
+  <line x1="48" y1="52" x2="48" y2="135" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  <line x1="5" y1="135" x2="48" y2="135" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  
+  <!-- Contact icons & text lines -->
+  <circle cx="12" cy="60" r="2.5" fill="var(--preview-primary, #000000)" />
+  <rect x="18" y="59" width="20" height="2" rx="0.5" fill="var(--preview-accent, #666666)" opacity="0.7" />
+  
+  <circle cx="12" cy="68" r="2.5" fill="var(--preview-primary, #000000)" />
+  <rect x="18" y="67" width="16" height="2" rx="0.5" fill="var(--preview-accent, #666666)" opacity="0.7" />
+  
+  <!-- Languages section title -->
+  <rect x="10" y="78" width="18" height="2.5" rx="0.5" fill="var(--preview-primary, #000000)" />
+  <!-- Progress bars -->
+  <rect x="10" y="86" width="10" height="1.5" rx="0.5" fill="var(--preview-accent, #666666)" />
+  <rect x="23" y="86.5" width="18" height="1" rx="0.5" fill="#e2e8f0" />
+  <rect x="23" y="86.5" width="10" height="1" rx="0.5" fill="var(--preview-primary, #000000)" />
+  
+  <rect x="10" y="92" width="12" height="1.5" rx="0.5" fill="var(--preview-accent, #666666)" />
+  <rect x="25" y="92.5" width="16" height="1" rx="0.5" fill="#e2e8f0" />
+  <rect x="25" y="92.5" width="8" height="1" rx="0.5" fill="var(--preview-primary, #000000)" />
+
+  <!-- Education section title -->
+  <rect x="10" y="102" width="22" height="2.5" rx="0.5" fill="var(--preview-primary, #000000)" />
+  <!-- Education items -->
+  <rect x="10" y="109" width="15" height="1.5" rx="0.5" fill="var(--preview-accent, #666666)" />
+  <rect x="10" y="112" width="28" height="1" rx="0.5" fill="#e2e8f0" />
+  <rect x="10" y="115" width="22" height="1" rx="0.5" fill="#e2e8f0" />
+  
+  <rect x="10" y="121" width="12" height="1.5" rx="0.5" fill="var(--preview-accent, #666666)" />
+  <rect x="10" y="124" width="24" height="1" rx="0.5" fill="#e2e8f0" />
+
+  <!-- Right column -->
+  <!-- Photo (Circle shape default) -->
+  <circle cx="85" cy="30" r="14" fill="#ffffff" stroke="var(--preview-primary, #000000)" stroke-width="1" />
+  
+  <!-- Profile section -->
+  <rect x="58" y="55" width="20" height="3" rx="0.5" fill="var(--preview-primary, #000000)" />
+  <rect x="58" y="63" width="44" height="2" rx="0.5" fill="#e2e8f0" />
+  <rect x="58" y="68" width="44" height="2" rx="0.5" fill="#e2e8f0" />
+  <rect x="58" y="73" width="30" height="2" rx="0.5" fill="#e2e8f0" />
+  
+  <!-- Experience section -->
+  <rect x="58" y="85" width="30" height="3" rx="0.5" fill="var(--preview-primary, #000000)" />
+  
+  <rect x="58" y="93" width="22" height="2" rx="0.5" fill="var(--preview-accent, #666666)" />
+  <rect x="58" y="97" width="44" height="1.5" rx="0.5" fill="#e2e8f0" />
+  <rect x="58" y="101" width="38" height="1.5" rx="0.5" fill="#e2e8f0" />
+  
+  <rect x="58" y="108" width="25" height="2" rx="0.5" fill="var(--preview-accent, #666666)" />
+  <rect x="58" y="112" width="44" height="1.5" rx="0.5" fill="#e2e8f0" />
+  <rect x="58" y="116" width="42" height="1.5" rx="0.5" fill="#e2e8f0" />
+  <rect x="58" y="120" width="20" height="1.5" rx="0.5" fill="#e2e8f0" />
+</svg>

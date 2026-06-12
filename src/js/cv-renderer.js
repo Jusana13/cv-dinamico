@@ -5,7 +5,7 @@
  * Optimiza la inyección de estilos (CSS) y tipografías en el DOM usando caché local.
  */
 
-import { state, loadTemplate, VISUAL_PLACEHOLDERS, templateCache } from './state.js';
+import { state, loadTemplate, VISUAL_PLACEHOLDERS, templateCache, templatesConfig } from './state.js';
 import { getSectionTitle, resolveDefaultValue } from './utils.js';
 
 // ==========================================================================
@@ -477,6 +477,12 @@ export async function updatePreview() {
       stateForRender.education.forEach(edu => {
         edu.title = resolveDefaultValue(edu.title, 'title', 'education');
       });
+    }
+
+    // Inyectar resourceLayouts desde la config en memoria para que las plantillas no necesiten importar JSON
+    const activeConfig = templatesConfig?.find(t => t.id === activeTemplate);
+    if (activeConfig?.resourceLayouts) {
+      stateForRender.resourceLayouts = activeConfig.resourceLayouts;
     }
 
     const html = template.render(stateForRender);

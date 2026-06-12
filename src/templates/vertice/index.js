@@ -1,9 +1,17 @@
-import { escapeHTML, silhouetteSVG, CONTACT_ICONS } from '../helpers.js';
+/**
+ * @file index.js
+ * @description Plantilla de diseño "Vértice" para la generación de currículums.
+ * Presenta una cabecera oblicua geométrica distintiva, con barra lateral para
+ * foto, contacto, y habilidades/idiomas representados con anillos circulares dinámicos.
+ */
+
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, renderResource } from '../helpers.js';
+
 
 /**
- * Renders the HTML structure for the Vértice template.
- * @param {Object} data - The CV state data.
- * @returns {string} The HTML string.
+ * Genera el HTML para la plantilla de currículum "Vértice".
+ * @param {Object} data - Datos del estado del currículum.
+ * @returns {string} Fragmento HTML listo para renderizar.
  */
 export function render(data) {
   const colors = data.colors?.vertice || { primary: '#fde484', accent: '#f5f6f8' };
@@ -52,16 +60,12 @@ export function render(data) {
     })
     .join('');
 
-  // Skills (Circular rings using conic-gradient)
-  const skillsHTML = (data.skills || [])
-    .map(s => {
-      const percent = s.percentage !== undefined ? s.percentage : (s.level ? s.level * 20 : 60);
-      return `
-        <div class="cv-skill-ring" style="background: conic-gradient(var(--color-primary, #fde484) ${percent}%, #e8e8e8 0);">
-          <div class="cv-skill-inner">${escapeHTML(s.name)}</div>
-        </div>`;
-    })
-    .join('');
+  // Skills
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
+
+  // Languages
+  const languagesHTML = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
+
 
   // Profile
   const profileHTML = (data.personal.profile || [])
@@ -118,6 +122,16 @@ export function render(data) {
             ${skillsHTML}
           </div>
         </div>` : ''}
+
+        ${languagesHTML ? `
+        <div class="cv-section">
+          <h3 class="cv-section-title">${escapeHTML(data.sectionTitles?.languages || 'Idiomas')}</h3>
+          <div class="cv-skills-grid">
+            ${languagesHTML}
+          </div>
+        </div>` : ''}
+
+
       </div>
 
       <div class="cv-main">

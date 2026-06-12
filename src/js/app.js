@@ -115,8 +115,8 @@ async function initTemplateSelector() {
 
       let svgHtml = '';
       try {
-        const svgRes = await fetch(tmpl.thumbnail);
-        svgHtml = await svgRes.text();
+        const svgRes = await fetch(`./src/templates/${tmpl.id}/thumbnail.svg`);
+        svgHtml = svgRes.ok ? await svgRes.text() : `<div class="template-card-preview">Miniatura</div>`;
       } catch (err) {
         console.error(`Error loading thumbnail for ${tmpl.id}:`, err);
         svgHtml = `<div class="template-card-preview">Miniatura</div>`;
@@ -133,6 +133,8 @@ async function initTemplateSelector() {
       `;
 
       cardDiv.addEventListener('click', async () => {
+        closeTemplateModal();
+        
         state.activeTemplate = tmpl.id;
         state.personal.photoShape = getDefaultPhotoShape(tmpl.id);
         applyTemplateDefaultOverrides(tmpl.id);
@@ -143,7 +145,6 @@ async function initTemplateSelector() {
         await updatePreview();
         updateThumbnailColors();
         saveState();
-        closeTemplateModal();
       });
 
       gridContainer.appendChild(cardDiv);
@@ -381,8 +382,9 @@ function setupEventListeners() {
   const personalityContainer = document.getElementById('personality-list-container');
   if (personalityContainer) {
     personalityContainer.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.getAttribute('data-index'));
+      
       if (e.target.classList.contains('pers-input')) {
-        const idx = parseInt(e.target.getAttribute('data-index'));
         const field = e.target.getAttribute('data-field');
         let value = e.target.value;
 
@@ -390,6 +392,15 @@ function setupEventListeners() {
         if (!state.personality) state.personality = [];
         state.personality[idx][field] = value;
         queuePreviewAndUpdate(); // Debounce
+      } else if (e.target.classList.contains('pers-input-range')) {
+        const val = parseInt(e.target.value);
+        if (!state.personality) state.personality = [];
+        state.personality[idx].percentage = val;
+
+        const percentLabel = e.target.closest('.form-group').querySelector('.percent-label');
+        if (percentLabel) percentLabel.textContent = `${val}%`;
+
+        queuePreviewAndUpdate(true); // Actualización instantánea para barras interactivas
       }
     });
   }

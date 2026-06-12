@@ -4,10 +4,10 @@
   <line x1="35" y1="0" x2="35" y2="155" stroke="#eaeaea" stroke-width="0.5" />
   
   <!-- Slanted Header -->
-  <path d="M35 0 H110 V32 H45 L35 0 Z" fill="var(--preview-primary, #fde484)" />
+  <path d="M25 0 H110 V32 H35 Z" fill="var(--preview-primary, #fde484)" />
 
   <!-- Avatar -->
-  <circle cx="17.5" cy="22" r="9" fill="#e0e0e0" stroke="#ffffff" stroke-width="1" />
+  <circle cx="17.5" cy="22" r="9" fill="#ffffff" stroke="#ffffff" stroke-width="1" />
 
   <!-- Contact -->
   <circle cx="8" cy="42" r="1.5" fill="var(--preview-primary, #fde484)" />

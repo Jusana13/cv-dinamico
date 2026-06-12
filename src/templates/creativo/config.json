@@ -1,36 +1,42 @@
 {
-    "id":  "creativo",
-    "name":  "Creativo",
-    "thumbnail":  "./src/templates/creativo/thumbnail.svg",
-    "defaultPhotoShape":  "circle",
-    "defaultFont":  "Poppins",
-    "features":  {
-                     "buttons":  true,
-                     "skillLevels":  false,
-                     "languageLevels":  false,
-                     "personality":  false,
-                     "personalityLevels":  false,
-                     "techSkills":  true
-                 },
-    "tabOrder":  [
-                     "sec-personal",
-                     "sec-contact",
-                     "sec-experience",
-                     "sec-education",
-                     "sec-tech-skills",
-                     "sec-languages",
-                     "sec-skills",
-                     "sec-design"
-                 ],
-    "colors":  {
-                   "primary":  "Color Principal",
-                   "accent":  "Color de Acento",
-                   "bgLight":  "Fondo Claro"
-               },
-    "sectionAliases":  {
-                           "skills":  "Competencias"
-                       },
-    "singularAliases":  {
-                            "skills":  "Competencia"
-                        }
+    "id": "creativo",
+    "name": "Creativo",
+    "thumbnail": "./src/templates/creativo/thumbnail.svg",
+    "defaultPhotoShape": "circle",
+    "defaultFont": "Poppins",
+    "features": {
+        "buttons": true,
+        "skillLevels": false,
+        "languageLevels": false,
+        "personality": false,
+        "personalityLevels": false,
+        "techSkills": true
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-profile",
+        "sec-contact",
+        "sec-experience",
+        "sec-education",
+        "sec-tech-skills",
+        "sec-languages",
+        "sec-skills",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Color Principal",
+        "accent": "Color de Acento",
+        "bgLight": "Fondo Claro"
+    },
+    "sectionAliases": {
+        "skills": "Competencias"
+    },
+    "singularAliases": {
+        "skills": "Competencia"
+    },
+    "resourceLayouts": {
+        "skills": "bullets-list",
+        "languages": "bullets-list",
+        "techSkills": "bullets-list"
+    }
 }

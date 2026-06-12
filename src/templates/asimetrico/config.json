@@ -1,30 +1,36 @@
 {
-    "id":  "asimetrico",
-    "name":  "Asimétrico",
-    "thumbnail":  "./src/templates/asimetrico/thumbnail.svg",
-    "defaultPhotoShape":  "square",
-    "defaultFont":  "Montserrat",
-    "features":  {
-                     "buttons":  true,
-                     "skillLevels":  true,
-                     "languageLevels":  true,
-                     "personality":  true,
-                     "personalityLevels":  false,
-                     "techSkills":  false
-                 },
-    "tabOrder":  [
-                     "sec-personal",
-                     "sec-contact",
-                     "sec-education",
-                     "sec-skills",
-                     "sec-experience",
-                     "sec-languages",
-                     "sec-personality",
-                     "sec-interests",
-                     "sec-design"
-                 ],
-    "colors":  {
-                   "primary":  "Color Principal",
-                   "accent":  "Color de Acento"
-               }
+    "id": "asimetrico",
+    "name": "Asimétrico",
+    "thumbnail": "./src/templates/asimetrico/thumbnail.svg",
+    "defaultPhotoShape": "square",
+    "defaultFont": "Montserrat",
+    "features": {
+        "buttons": true,
+        "skillLevels": true,
+        "languageLevels": true,
+        "personality": true,
+        "personalityLevels": false,
+        "techSkills": false
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-profile",
+        "sec-contact",
+        "sec-education",
+        "sec-skills",
+        "sec-experience",
+        "sec-languages",
+        "sec-personality",
+        "sec-interests",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Color Principal",
+        "accent": "Color de Acento"
+    },
+    "resourceLayouts": {
+        "skills": "rating-stars",
+        "languages": "progress-linear-text",
+        "personality": "pills-tags"
+    }
 }

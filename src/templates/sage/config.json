@@ -1,34 +1,40 @@
 {
-    "id":  "sage",
-    "name":  "Sage",
-    "thumbnail":  "./src/templates/sage/thumbnail.svg",
-    "defaultPhotoShape":  "circle",
-    "defaultFont":  "Outfit",
-    "features":  {
-                     "buttons":  true,
-                     "skillLevels":  true,
-                     "skillPercentage":  true,
-                     "languageLevels":  true,
-                     "personality":  true,
-                     "personalityLevels":  false,
-                     "techSkills":  false
-                 },
-    "tabOrder":  [
-                     "sec-personal",
-                     "sec-contact",
-                     "sec-education",
-                     "sec-personality",
-                     "sec-interests",
-                     "sec-skills",
-                     "sec-languages",
-                     "sec-experience",
-                     "sec-design"
-                 ],
-    "colors":  {
-                   "primary":  "Fondo de Cabecera (Sage)",
-                   "accent":  "LÃ­neas y Texto Principal"
-               },
-    "defaultDataOverrides":  {
-                                 "experience":  2
-                             }
+    "id": "sage",
+    "name": "Sage",
+    "thumbnail": "./src/templates/sage/thumbnail.svg",
+    "defaultPhotoShape": "circle",
+    "defaultFont": "Outfit",
+    "features": {
+        "buttons": true,
+        "skillLevels": true,
+        "skillPercentage": true,
+        "languageLevels": true,
+        "personality": true,
+        "personalityLevels": false,
+        "techSkills": false
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-profile",
+        "sec-contact",
+        "sec-education",
+        "sec-personality",
+        "sec-interests",
+        "sec-skills",
+        "sec-languages",
+        "sec-experience",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Fondo de Cabecera (Sage)",
+        "accent": "LÃ­neas y Texto Principal"
+    },
+    "defaultDataOverrides": {
+        "experience": 2
+    },
+    "resourceLayouts": {
+        "skills": "progress-linear",
+        "languages": "progress-linear",
+        "personality": "bullets-list"
+    }
 }

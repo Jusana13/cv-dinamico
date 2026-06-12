@@ -5,7 +5,8 @@
  * líneas ornamentales con estrellas y cruces decorativas.
  */
 
-import { escapeHTML, silhouetteSVG } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Estrella".
@@ -51,9 +52,7 @@ export function render(data) {
     .join('<span class="separator">|</span>');
 
   // Habilidades (Lista simple con viñetas según el diseño original)
-  const skillsHTML = (data.skills || [])
-    .map(s => `<li>${escapeHTML(s.name)}</li>`)
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
   const skillsBlockHTML = (data.skills || []).length > 0 ? `
     <div class="section-block">
@@ -84,9 +83,7 @@ export function render(data) {
     </div>` : '';
 
   // Personalidad
-  const personalityHTML = (data.personality || [])
-    .map(p => `<li>${escapeHTML(p.name)}</li>`)
-    .join('');
+  const personalityHTML = renderResource(data.personality, 'personality', data.resourceLayouts?.personality, colors);
 
   const personalityBlockHTML = (data.personality || []).length > 0 ? `
     <div class="section-block">

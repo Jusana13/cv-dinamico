@@ -7,7 +7,7 @@
 
   <!-- Center Double Circular Border Profile Photo -->
   <circle cx="55" cy="22" r="16.5" fill="none" stroke="var(--preview-accent, #22252a)" stroke-width="0.6" />
-  <circle cx="55" cy="22" r="14" fill="#9f9f9f" stroke="var(--preview-accent, #22252a)" stroke-width="1.2" />
+  <circle cx="55" cy="22" r="14" fill="#ffffff" stroke="var(--preview-accent, #22252a)" stroke-width="1.2" />
 
   <!-- Dotted Connector Lines (Left & Right) -->
   <line x1="12" y1="12" x2="38" y2="12" stroke="var(--preview-accent, #22252a)" stroke-width="0.5" stroke-dasharray="1 1" opacity="0.6" />

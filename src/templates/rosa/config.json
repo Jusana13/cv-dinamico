@@ -1,32 +1,38 @@
 {
-    "id":  "rosa",
-    "name":  "Rosado",
-    "thumbnail":  "./src/templates/rosa/thumbnail.svg",
-    "defaultPhotoShape":  "circle",
-    "defaultFont":  "Poppins",
-    "features":  {
-                     "buttons":  true,
-                     "skillLevels":  true,
-                     "languageLevels":  false,
-                     "personality":  true,
-                     "personalityLevels":  true,
-                     "techSkills":  false,
-                     "additionalInfoText":  true
-                 },
-    "tabOrder":  [
-                     "sec-personal",
-                     "sec-education",
-                     "sec-experience",
-                     "sec-skills",
-                     "sec-personality",
-                     "sec-contact",
-                     "sec-languages",
-                     "sec-additional",
-                     "sec-design"
-                 ],
-    "colors":  {
-                   "primary":  "Color Principal",
-                   "accent":  "Color de Acento",
-                   "bgLight":  "Fondo Claro"
-               }
+    "id": "rosa",
+    "name": "Rosado",
+    "thumbnail": "./src/templates/rosa/thumbnail.svg",
+    "defaultPhotoShape": "circle",
+    "defaultFont": "Poppins",
+    "features": {
+        "buttons": true,
+        "skillLevels": true,
+        "languageLevels": false,
+        "personality": true,
+        "personalityLevels": true,
+        "techSkills": false,
+        "additionalInfoText": true
+    },
+    "tabOrder": [
+        "sec-personal",
+        "sec-profile",
+        "sec-education",
+        "sec-experience",
+        "sec-skills",
+        "sec-personality",
+        "sec-contact",
+        "sec-languages",
+        "sec-additional",
+        "sec-design"
+    ],
+    "colors": {
+        "primary": "Color Principal",
+        "accent": "Color de Acento",
+        "bgLight": "Fondo Claro"
+    },
+    "resourceLayouts": {
+        "skills": "rating-dots",
+        "languages": "text-list-inline",
+        "personality": "rating-dots"
+    }
 }

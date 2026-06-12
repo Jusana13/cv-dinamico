@@ -6,7 +6,7 @@
   <rect x="39" y="0" width="71" height="46" fill="var(--preview-primary, #111316)" />
 
   <!-- Photo Box (Left side overlapping the band) -->
-  <rect x="6" y="6" width="50" height="54" fill="#9f9f9f" stroke="#ffffff" stroke-width="1.5" />
+  <rect x="6" y="6" width="50" height="54" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" />
   
   <!-- Header text lines inside top band -->
   <rect x="62" y="10" width="22" height="4" rx="0.5" fill="#ffffff" opacity="0.8" />

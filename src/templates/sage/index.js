@@ -7,7 +7,8 @@
  * Habilidades/Idiomas) y una sección inferior de experiencia laboral a ancho completo.
  */
 
-import { renderStars, escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS } from '../helpers.js';
+import { escapeHTML, silhouetteSVG, CONTACT_ICONS, INTEREST_ICONS, renderResource } from '../helpers.js';
+
 
 /**
  * Genera el HTML para la plantilla de currículum "Sage".
@@ -91,13 +92,10 @@ export function render(data) {
     .join('');
 
   // Columna 2: Cualidades de personalidad e intereses
-  const personalityHTML = (data.personality || [])
-    .map(p => `<li>${escapeHTML(p.name).toUpperCase()}</li>`)
-    .join('');
-
-  const personalitySection = personalityHTML ? `
+  const personalityContent = renderResource(data.personality, 'personality', data.resourceLayouts?.personality, colors);
+  const personalitySection = personalityContent ? `
     <ul class="expertise-list">
-      ${personalityHTML}
+      ${personalityContent}
     </ul>` : '';
 
   const interestsHTML = (data.interests || []).length > 0 ? `
@@ -125,29 +123,13 @@ export function render(data) {
   `;
 
   // Columna 3: Habilidades e Idiomas
-  const skillsHTML = (data.skills || [])
-    .map(s => {
-      const percent = s.percentage !== undefined ? s.percentage : (s.level ? s.level * 20 : 60);
-      return `
-        <div class="skill-block">
-          <span class="skill-name">${escapeHTML(s.name).toUpperCase()}</span>
-          <div class="progress-bg">
-            <div class="progress-fill" style="width: ${percent}%;"></div>
-          </div>
-        </div>`;
-    })
-    .join('');
+  const skillsHTML = renderResource(data.skills, 'skills', data.resourceLayouts?.skills, colors);
 
-  const languagesHTML = (data.languages || []).length > 0 ? `
+  const languagesContent = renderResource(data.languages, 'languages', data.resourceLayouts?.languages, colors);
+  const languagesHTML = languagesContent ? `
     <div class="languages-section" style="margin-top: 25px;">
       <h4 class="ed-title" style="margin-bottom: 12px; font-size: 11px;">${escapeHTML(data.sectionTitles?.languages || 'Idiomas').toUpperCase()}</h4>
-      ${(data.languages || []).map(lang => `
-        <div class="skill-block">
-          <span class="skill-name">${escapeHTML(lang.name).toUpperCase()} (${escapeHTML(lang.level)})</span>
-          <div class="progress-bg">
-            <div class="progress-fill" style="width: ${lang.percentage || 50}%;"></div>
-          </div>
-        </div>`).join('')}
+      ${languagesContent}
     </div>` : '';
 
   const col3HTML = `

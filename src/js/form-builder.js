@@ -100,6 +100,7 @@ export function renderExperienceForm() {
       currentCheckbox.checked = !!exp.current;
     }
 
+
     const bulletsTextarea = card.querySelector('.exp-bullets-input');
     if (bulletsTextarea) {
       bulletsTextarea.value = (exp.bullets || []).join('\n');
@@ -188,10 +189,12 @@ export function renderSkillsForm() {
     addBtnSpan.textContent = getButtonText(singular, 'skills');
   }
 
-  const features = getActiveTemplateFeatures();
-  const showLevel = features.skillLevels;
-  const showPercentage = features.skillPercentage;
-  const templateId = (showLevel && showPercentage) ? 'template-skill-percentage-card' : 'template-skill-card';
+  const activeTmplConfig = templatesConfig.find(t => t.id === state.activeTemplate);
+  const layout = activeTmplConfig?.resourceLayouts?.skills || 'bullets-list';
+
+  const isPercentage = layout.startsWith('progress-');
+  const isLevel = layout.startsWith('rating-');
+  const templateId = isPercentage ? 'template-skill-percentage-card' : 'template-skill-card';
 
   state.skills.forEach((skill, index) => {
     let percent = skill.percentage;
@@ -205,7 +208,7 @@ export function renderSkillsForm() {
     const nameInput = card.querySelector('input[data-field="name"]');
     if (nameInput) nameInput.value = resolveDefaultValue(skill.name || '', 'name', 'skills');
 
-    if (showLevel && showPercentage) {
+    if (isPercentage) {
       const rangeInput = card.querySelector('.skill-input-range');
       if (rangeInput) {
         rangeInput.value = percent;
@@ -213,11 +216,12 @@ export function renderSkillsForm() {
     } else {
       const inputRow = card.querySelector('.input-row');
       if (inputRow) {
-        inputRow.classList.add(showLevel ? 'skill-grid-with-level' : 'skill-grid-no-level');
+        inputRow.classList.toggle('skill-grid-with-level', isLevel);
+        inputRow.classList.toggle('skill-grid-no-level', !isLevel);
       }
       const levelGroup = card.querySelector('.level-group');
       if (levelGroup) {
-        levelGroup.style.display = showLevel ? '' : 'none';
+        levelGroup.style.display = isLevel ? '' : 'none';
       }
 
       const select = card.querySelector('select[data-field="level"]');
@@ -255,27 +259,44 @@ export function renderPersonalityForm() {
     addBtnSpan.textContent = 'Añadir Cualidad';
   }
 
-  const features = getActiveTemplateFeatures();
-  const list = state.personality || [];
-  list.forEach((pers, index) => {
-    const card = getClonedTemplate('template-personality-card', index);
-    if (!card) return;
+  const activeTmplConfig = templatesConfig.find(t => t.id === state.activeTemplate);
+  const layout = activeTmplConfig?.resourceLayouts?.personality || 'bullets-list';
 
-    const inputRow = card.querySelector('.personality-grid');
-    if (inputRow) {
-      inputRow.classList.toggle('hide-levels', !features.personalityLevels);
+  const isPercentage = layout.startsWith('progress-');
+  const isLevel = layout.startsWith('rating-');
+  const templateId = isPercentage ? 'template-personality-percentage-card' : 'template-personality-card';
+  const list = state.personality || [];
+
+  list.forEach((pers, index) => {
+    let percent = pers.percentage;
+    if (percent === undefined) {
+      percent = pers.level ? pers.level * 20 : 60;
     }
-    const levelGroup = card.querySelector('.level-group');
-    if (levelGroup) {
-      levelGroup.style.display = features.personalityLevels ? '' : 'none';
-    }
+
+    const card = getClonedTemplate(templateId, index, { percentage: percent });
+    if (!card) return;
 
     const nameInput = card.querySelector('input[data-field="name"]');
     if (nameInput) nameInput.value = pers.name || '';
 
-    const select = card.querySelector('select[data-field="level"]');
-    if (select) {
-      select.value = pers.level || 3;
+    if (isPercentage) {
+      const rangeInput = card.querySelector('.pers-input-range');
+      if (rangeInput) {
+        rangeInput.value = percent;
+      }
+    } else {
+      const inputRow = card.querySelector('.personality-grid');
+      if (inputRow) {
+        inputRow.classList.toggle('hide-levels', !isLevel);
+      }
+      const levelGroup = card.querySelector('.level-group');
+      if (levelGroup) {
+        levelGroup.style.display = isLevel ? '' : 'none';
+      }
+      const select = card.querySelector('select[data-field="level"]');
+      if (select) {
+        select.value = pers.level || 3;
+      }
     }
 
     container.appendChild(card);
@@ -309,10 +330,6 @@ export function renderTechSkillsForm() {
   updateSectionLabels('techSkills');
 }
 
-/**
- * Renderiza las tarjetas de Idiomas del panel lateral.
- * @description Carga layouts con slider de dominio de idioma o texto plano según los features.
- */
 export function renderLanguagesForm() {
   const container = document.getElementById('languages-list-container');
   if (!container) return;
@@ -325,9 +342,11 @@ export function renderLanguagesForm() {
     addBtnSpan.textContent = getButtonText(singular, 'languages');
   }
 
-  const features = getActiveTemplateFeatures();
-  const showPercentage = features.languageLevels;
-  const templateId = showPercentage ? 'template-language-percentage-card' : 'template-language-simple-card';
+  const activeTmplConfig = templatesConfig.find(t => t.id === state.activeTemplate);
+  const layout = activeTmplConfig?.resourceLayouts?.languages || 'bullets-list';
+
+  const isPercentage = layout.startsWith('progress-');
+  const templateId = isPercentage ? 'template-language-percentage-card' : 'template-language-simple-card';
 
   state.languages.forEach((lang, index) => {
     const card = getClonedTemplate(templateId, index, { singular, percentage: lang.percentage || 100 });
@@ -339,7 +358,7 @@ export function renderLanguagesForm() {
     const levelInput = card.querySelector('input[data-field="level"]');
     if (levelInput) levelInput.value = lang.level || '';
 
-    if (showPercentage) {
+    if (isPercentage) {
       const rangeInput = card.querySelector('.lang-input-range');
       if (rangeInput) {
         rangeInput.value = lang.percentage || 100;
@@ -746,20 +765,34 @@ export function syncStaticInputs() {
   }
 
   // Ordenar pestañas de la UI
-  const defaultOrder = [
-    'sec-personal',
-    'sec-contact',
-    'sec-education',
-    'sec-experience',
-    'sec-tech-skills',
-    'sec-skills',
-    'sec-personality',
-    'sec-languages',
-    'sec-interests',
-    'sec-additional',
-    'sec-design'
-  ];
-  const order = activeTmplConfig?.tabOrder || defaultOrder;
+  const mandatoryTabs = ['sec-personal', 'sec-contact', 'sec-design'];
+  const userOrder = activeTmplConfig?.tabOrder;
+  
+  let order;
+  if (!userOrder || !Array.isArray(userOrder)) {
+    order = [...mandatoryTabs];
+  } else {
+    order = [...userOrder];
+    // Ensure all mandatory tabs are present
+    if (!order.includes('sec-personal')) {
+      order.unshift('sec-personal');
+    }
+    if (!order.includes('sec-contact')) {
+      const personalIdx = order.indexOf('sec-personal');
+      order.splice(personalIdx + 1, 0, 'sec-contact');
+    }
+    if (!order.includes('sec-design')) {
+      order.push('sec-design');
+    }
+  }
+
+  // Filter based on explicit feature flags as a secondary defense
+  order = order.filter(target => {
+    if (target === 'sec-education' && features.education === false) return false;
+    if (target === 'sec-experience' && features.experience === false) return false;
+    return true;
+  });
+
   const navTabs = document.querySelector('.editor-tabs');
 
   if (navTabs) {
@@ -774,6 +807,8 @@ export function syncStaticInputs() {
         let tabTitle = '';
         if (sectionKey === 'personal') {
           tabTitle = 'Información Personal';
+        } else if (sectionKey === 'profile') {
+          tabTitle = 'Perfil';
         } else if (sectionKey === 'design') {
           tabTitle = 'Diseño';
         } else if (sectionKey === 'tech-skills') {
